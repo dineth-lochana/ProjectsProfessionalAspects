@@ -1,0 +1,76 @@
+.project-detail-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin: 0 5%;
+}
+
+.project-detail-header {
+    text-align: center;
+}
+
+.project-detail-cover {
+    width: 285px; 
+    height: auto;
+    max-width: 100%; 
+    border-radius: 5px;
+    padding-top: 10%;
+}
+
+.project-detail-title {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.project-detail-client {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.project-detail-info {
+    flex: 1;
+    margin-top: 20px; 
+    padding-left: 5%;
+    max-width: 100%; 
+}
+
+.project-detail-description {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.project-detail-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.slideshow-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Adjust as needed */
+    width: auto; /* Set fixed width */
+    height: 400px; /* Set fixed height */
+    overflow: hidden; /* Hide overflow */
+}
+
+.slideshow-img {
+        width: auto; 
+        height: 100%; 
+        object-fit: contain; 
+    
+}
+
+
+@media screen and (min-width: 768px) {
+    .project-detail-container {
+        flex-direction: row; 
+        justify-content: space-between;
+        align-items: flex-start; 
+    }
+    .project-detail-info {
+        flex: 1;
+        margin-left: 20px;
+    }
+}
