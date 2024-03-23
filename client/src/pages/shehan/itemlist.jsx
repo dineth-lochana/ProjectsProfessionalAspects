@@ -82,14 +82,18 @@ const ItemList = () => {
 
 
 
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:8800/msg/${id}`);
-      // No need to reload the window; setItems will trigger a re-render
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const handleDelete = async (id) => {    
+      const isConfirmed = window.confirm("Are you sure you want to delete this item?");
+      if (isConfirmed) {
+        try {
+          await axios.delete(`http://localhost:8800/msg/${id}`);
+          // No need to reload the window; setItems will trigger a re-render
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    };
+
 
   const handlePrint = (item) => {
     const printedDetails = `Full Name: ${item.Full_Name}\nSubject: ${item.Subject}\nCompany Name: ${item.Company_Name}\nEmail Address: ${item.Email_Address}\nContact Number: ${item.Contact_Number}\nDetails: ${item.Details}`;
