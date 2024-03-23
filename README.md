@@ -28,4 +28,18 @@ Thank you for your Hard Work!
 | Dilshani Balasooriya (SA22498342) | Forum System                  | a. Thread creation.<br>b. Image upload.<br>c. Post reply, and reactions.<br>d. Manage forum threads.                                                  |
 | Dineth Mallawarachchi (SA22521620) | Interactive Project Portfolio | a. Interactive Project Showcase Content Editor.<br>b. Interactive Project Showcase Theme Editor.<br>c. Printing Interactive Portfolio.<br>d. Testimonial management System. |
 
+<br>
+<br>
+
+*Responsibilities Breakdown*
+
+| Role             | Responsibility                                                                                       | Participant(s)                        |
+|------------------|------------------------------------------------------------------------------------------------------|---------------------------------------|
+| Project Sponsor  | Ensure effective communication of requirements and oversight of the team                            |                                       |
+| Project Leader   | Ensure the project will fulfill the required goals and that the development team achieves the clients request without fail. | Dineth Mallawarachchi (SA22521620) |
+| Analysis         | Analyze and clearly document the functional and nonfunctional requirements needed for the project   | Shehan Sangeeth (SA22527806)          |
+| Design           | Ensure design fulfills the goals of GreenTech and its customers. (and W3 Guidelines )               | Dhananjaya Dilshan (SA22521798)       |
+| Implementation   | Ensure implementation and integration of the system proceeds as expected.                           | Dilshani Balasooriya (SA22498342)     |
+| Testing          | Test the quality, functionality, and safety of the components and the integrated product.           | Nisansa Ranthatige (SA22499196)       |
+
 
