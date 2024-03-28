@@ -538,6 +538,34 @@ app.put("/Products/:ProductID", (req, res) => {
   });
 });
 
+//////////manage accounts
+app.get("/users", (req, res) => {
+  const q = "SELECT * FROM `users`";
+  db.query(q, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.json(err);
+    }
+    return res.json(data);
+  });
+});
+
+
+app.put("/users/:userId/verification", (req, res) => {
+  const userId = req.params.userId;
+  const { verified } = req.body;
+
+  const q = "UPDATE users SET verified = ? WHERE id = ?";
+  const values = [verified, userId];
+
+  db.query(q, values, (err, data) => {
+    if (err) {
+      console.error("Error updating user verification status:", err);
+      return res.status(500).json({ error: "Failed to update user verification status" });
+    }
+    return res.json({ success: true, message: "User verification status updated successfully" });
+  });
+});
 
 
 
