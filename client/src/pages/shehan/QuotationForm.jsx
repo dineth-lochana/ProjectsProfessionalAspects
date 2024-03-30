@@ -8,7 +8,7 @@ const QuotationForm = () => {
     fullName: '',
     subject: '',
     companyName: '',
-    emailAddress: '',
+    emailAddress: localStorage.getItem('useremail'),
     contactNumber: '',
     details: '',
   });
@@ -25,7 +25,7 @@ const QuotationForm = () => {
       fullName: '',
       subject: '',
       companyName: '',
-      emailAddress: '',
+      emailAddress: localStorage.getItem('useremail'),
       contactNumber: '',
       details: '',
     });
