@@ -8,6 +8,34 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div>
+      <style>
+        {`
+        * {
+          box-sizing: border-box;
+        }
+
+        .column {
+          float: left;
+          width: 40%;
+          padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 500px) {
+          .column {
+            width: 100%;
+          }
+        }
+        `}
+      </style>
+
       <div>
         <ImageSlider />
       </div>
@@ -21,7 +49,7 @@ const Home = () => {
         style={{ paddingTop: "00px", paddingBottom: "100px" }}
       >
         <div className="products">
-          <Link to="/AddProduct">
+          <Link to="/SolarProducts">
             <div className="mproduct">
               <div className="image">
                 <img src="./images/c.png" alt="Solar Systems" />
@@ -32,7 +60,7 @@ const Home = () => {
             </div>
           </Link>
 
-          <Link to="/Product">
+          <Link to="/FireProducts">
             <div className="mproduct">
               <div className="image">
                 <img
@@ -51,7 +79,7 @@ const Home = () => {
             </div>
           </Link>
 
-          <Link to="/manageAcounts">
+          <Link to="/ControlsProducts">
             <div className="mproduct">
               <div className="image">
                 <img
@@ -70,20 +98,24 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="rows">
-        <div className="row">
-          <div className="left" style={{ width: "500px" }}>
-            <h4
+
+<div style={{
+                padding: "50px" 
+              }}>
+<div class="row">
+  <div class="column">
+  <h4
               style={{
                 color: "rgb(2, 2, 2)",
                 fontSize: "35px",
                 textAlign: "center",
               }}
             >
+              <b>
               Company Profile
+              </b>
             </h4>
-
-            <p
+  <p
               style={{
                 color: "rgb(10, 10, 10)",
                 fontSize: "25px",
@@ -97,57 +129,47 @@ const Home = () => {
               ‘fit for purpose’ engineering service to the targeted industries
               at reasonable cost.
             </p>
-          </div>
-
-          <div className="right">
-            <br />
-            <br />
-            <br />
-            <br />
-            <img
+  </div>
+  <div class="column">
+  <img
               src="./images/nana.gif"
               alt="T-SHIRTS"
-              style={{ width: "630px", paddingTop: "30px" }}
+              style={{ width: "700px",paddingLeft:"20px"}}
+             
             />
-          </div>
-        </div>
+  </div>
+ 
+</div>
 
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <hr style={{ borderTop: "1px solid #73f573" }} />
-        <div className="row">
-          <div className="left">
-            <br />
-            <br />
-            <br />
-            <img
+<br />
+       
+        <hr style={{ borderTop: "3px solid #73f573" }} />
+
+
+
+<div class="row">
+  <div class="column">
+  <img
               src="./images/6.png"
               alt="T-SHIRTS"
-              style={{ width: "500px" }}
+              
             />
-          </div>
-
-          <div className="right">
-            <br />
-            <b>
-              <h4
-                style={{
-                  color: "rgb(2, 2, 2)",
-                  fontSize: "35px",
-                  textAlign: "center",
-                }}
-              >
-                Company Experience and Operations
-              </h4>
-            </b>
-            <b></b>
-            <p
+  </div>
+  <div class="column" style={{
+              width: "750px"
+              }}>
+  <h4
+              style={{
+                color: "rgb(2, 2, 2)",
+                fontSize: "35px",
+                textAlign: "center",
+              }}
+            >
+              <b>
+              Company Experience and Operations
+              </b>
+            </h4>
+  <p
               style={{
                 color: "rgb(10, 10, 10)",
                 fontSize: "25px",
@@ -165,33 +187,40 @@ const Home = () => {
               Engineering, Mechanical & Civil structural engineering, electrical
               & instrumentation engineering and fire & gas engineering.
             </p>
-          </div>
-        </div>
+  </div>
+ 
+</div>
 
-        <br />
-        <br />
-        <br />
-        <br />
-        <hr style={{ borderTop: "1px solid #73f573" }} />
-        <div className="row">
-          <div className="left" style={{ width: "600px" }}>
-            <h4
+<br />
+       
+        <hr style={{ borderTop: "3px solid #73f573" }} />
+
+
+
+
+<div class="row">
+  <div class="column" style={{
+              width: "750px"
+              }}>
+  <h4
               style={{
                 color: "rgb(2, 2, 2)",
                 fontSize: "35px",
                 textAlign: "center",
               }}
             >
+              <b>
               Promote your merchandise
+              </b>
             </h4>
-            <p
+  <p
               style={{
                 color: "rgb(10, 10, 10)",
                 fontSize: "25px",
                 textAlign: "center",
               }}
             >
-              Well experienced in the carrying out of assignments, our
+             Well experienced in the carrying out of assignments, our
               personnel, as individuals, have also developed experience in a
               significant diversity and range of project sizes and types and
               this is reflected in the overall capability of our company. Our
@@ -202,14 +231,9 @@ const Home = () => {
               Lanka across the wide range of Engineering activities described
               earlier in this profile
             </p>
-          </div>
-
-          <div className="right">
-            <br />
-            <br />
-            <br />
-            <br />
-            <img
+  </div>
+  <div class="column">
+  <img
               src="./images/3.png"
               alt="T-SHIRTS"
               style={{
@@ -218,45 +242,49 @@ const Home = () => {
                 paddingTop: "60px",
               }}
             />
-          </div>
-        </div>
+  </div>
+ 
+</div>
 
-        <br /><br /><br />
+<br />
        
-        <hr style={{ borderTop: "1px solid #73f573" }} />
-        <div className="row">
-          <div className="left">
-            <img
+        <hr style={{ borderTop: "3px solid #73f573" }} />
+
+
+
+<div class="row">
+  <div class="column">
+  <img
               src="./images/fin.gif"
               alt="T-SHIRTS"
               style={{
-                width: "600px",
+                width: "500px",
+                paddingTop: "80px",
                 
-                paddingTop: "60px",
+                
               }}
+              
             />
-          </div>
-
-          <div className="right">
-            <br />
-            <br />
-            <br />
-            <h4
+  </div>
+  <div class="column" style={{
+              width: "750px"
+              }}>
+  <h4
               style={{
                 color: "rgb(2, 2, 2)",
                 fontSize: "35px",
                 textAlign: "center",
               }}
             >
+              <b>
               Design, Supply & Installation of Complete Systems
+              </b>
             </h4>
-
-            <p
+  <p
               style={{
                 color: "rgb(10, 10, 10)",
                 fontSize: "25px",
                 textAlign: "center",
-              
               }}
             >
               The Company has the capability to design, supply, install and
@@ -271,15 +299,16 @@ const Home = () => {
               Drafting and production of engineering work-packs; Full
               certification & documentation pack to suit client requirements.
             </p>
-          </div>
-        </div>
-      </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+  </div>
+ 
+</div>
+
+
+
+
+
+</div>
+      
     </div>
   );
 };

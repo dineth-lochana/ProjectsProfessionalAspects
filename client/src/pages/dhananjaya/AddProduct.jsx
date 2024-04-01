@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
 
 
 const AddProduct = () => {
@@ -42,9 +43,11 @@ const AddProduct = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
+      swal("Success!", "Add product successful!", "success")
       navigate("/Product");
     } catch (err) {
       console.log(err);
+      swal("Failed!", "Process failed. Please try again.", "error");
       setError(true)
     }
   };
@@ -72,12 +75,13 @@ const AddProduct = () => {
       onChange={handleChange}
     />
  <input type="file" name="Imagepath" onChange={handleChange} accept="image/*" />
-       <input
-      type="text"
-      placeholder="Product Category"
-      name="Category"
-      onChange={handleChange}
-    />
+ <select name="Category" onChange={handleChange}  style={{ textAlign: "center", fontSize: "20px", borderRadius: "25px" }}
+>
+          <option value="">Select Category</option>
+          <option value="Solar">Solar</option>
+          <option value="Fire Detection and Protection">Fire Detection and Protection</option>
+          <option value="Controls">Controls</option>
+        </select>
     <button onClick={handleClick}>Add</button>
     {error && "Something went wrong!"}
     

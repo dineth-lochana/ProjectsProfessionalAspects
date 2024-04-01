@@ -37,7 +37,7 @@ const SolarProducts = () => {
     <div style={{ paddingBottom: '400px', paddingTop: '150px', padding: '50px' }}>
     <h1>Products</h1>
     <div>
-      {Product.map((Product) => (
+      {Product.filter((product) => product.Category === 'Solar').map((Product) => (
         <div key={Product.ProductID} style={{ border: '2px solid #D5D5D5 ',borderRadius: '10px', margin: '20px auto', padding: '20px', display: 'flex', justifyContent: 'space-between' }}>
           <div className="left">
           {Product.Imagepath && <img src={`http://localhost:8800/${Product.Imagepath}`} alt="Product" style={{ width: '300px' }} />}

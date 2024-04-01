@@ -46,9 +46,16 @@ function Nav(props) {
             <li className="nav-item">
               <Link className="nav-link" to="/" aria-current="page">Home</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/products">Products</Link>
-            </li>
+            <li className="nav-item dropdown">
+      <Link className="nav-link" to="/products">
+        Products
+      </Link>
+      <div className="dropdown-content">
+        <Link to="/SolarProducts">Solar</Link>
+        <Link to="/FireProducts">Fire Detection and Protection</Link>
+        <Link to="/ControlsProducts">Controls</Link>
+      </div>
+    </li>
             <li className="nav-item">
               <Link className="nav-link" to="/quotation">Quotations</Link>
             </li>            
