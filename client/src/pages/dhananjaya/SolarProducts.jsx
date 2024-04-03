@@ -47,15 +47,18 @@ const SolarProducts = () => {
             <div style={{ fontSize: '28px' }}>{Product.ProductName}</div>
             <br/>
             <div style={{ fontSize: '25px' }}>
-  <b>Category:</b> {Product.Category}
-</div>
-<div style={{ fontSize: '20px' }}>
-  <b>Description:</b> {Product.description}
-</div>
-<br/>
-<div style={{ fontSize: '25px' }}>
-  <b>Price:</b> RS.{Product.Price}.00
-</div>
+              <b>Category:</b> {Product.Category}
+            </div>
+            
+            <div style={{ fontSize: '20px' }}>
+              <b>Description:</b> {Product.description}
+          </div>
+          
+          <br/>
+
+          <div style={{ fontSize: '25px' }}>
+            <b>Price:</b> RS.{Product.Price}.00
+          </div>
 
             
           </div>
