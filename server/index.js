@@ -9,8 +9,8 @@ const app = express()
 
 const db = mysql.createConnection({
     host:"localhost",
-    user:"green-user",
-    password:"userpw",
+    user:"root",
+    password:"",
     database:"test2"
 }
 )
@@ -248,6 +248,13 @@ app.put("/opinions/:opinionid", (req, res)=> {
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Shehan's Code
 
+app.get("/all", (req, res) => {
+  const q = "SELECT * FROM msg";
+  db.query(q, (err, data) => {
+    if (err) return res.json("Error fetching messages");
+    return res.json(data);
+  });
+});
 
 
 app.get("/msg/:email", (req, res) => {
@@ -319,6 +326,36 @@ app.put("/msg/:idmsg", (req, res) => {
   });
 });
 
+app.put("/all/:idmsg", (req, res) => {
+  const idmsg = req.params.idmsg;
+  const {
+    Full_Name,
+    Subject,
+    Company_Name,
+    Email_Address,
+    Contact_Number,
+    Details,
+    admin_view,
+  } = req.body;
+
+  const q =
+    "UPDATE msg SET Full_Name=?, Subject=?, Company_Name=?, Email_Address=?, Contact_Number=?, Details=?, admin_view=1 WHERE idmsg = ?";
+
+  const values = [
+    Full_Name,
+    Subject,
+    Company_Name,
+    Email_Address,
+    Contact_Number,
+    Details,
+    idmsg,
+  ];
+
+  db.query(q, values, (err, data) => {
+    if (err) return res.json(err);
+    return res.json("Data Updated!");
+  });
+});
 
 
 
@@ -529,6 +566,7 @@ app.put("/Products/:ProductID", (req, res) => {
   });
 });
 
+
 //////////manage accounts
 app.get("/users", (req, res) => {
   const q = "SELECT * FROM `users`";
@@ -541,6 +579,15 @@ app.get("/users", (req, res) => {
   });
 });
 
+app.delete("/Products/:ProductID", (req,res) => {
+  const ProductID = req.params.ProductID;
+  const q = "DELETE from products where ProductID = ?";
+
+  db.query(q,[ProductID], (err,data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+});
 
 app.put("/users/:userId/verification", (req, res) => {
   const userId = req.params.userId;

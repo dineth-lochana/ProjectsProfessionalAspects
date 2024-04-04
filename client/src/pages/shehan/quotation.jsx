@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useState } from 'react';
+import QuotationForm from './QuotationForm';
+import Notification from './Notification'; 
+import './App.css';
+import QuotationForm_Update from './QuotationForm_Update';
+import ItemListA from './itemlistA';
 
-import { Link } from "react-router-dom";
+const Quolist = () => {
+  const [showNotification, setShowNotification] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
-const Quotation = () => {
+  const handleNotificationClose = () => {
+    setShowNotification(false);
+  };
+
+  const handleSelectItem = (item) => {
+    setSelectedItem(item);
+  };
+
   return (
-    <div>
-      <p style={{ textAlign: "center", paddingTop: "100px", fontSize: "50px" }}>
-      Quotations
-      </p>
-
-      
+    <div className="container">
+      <ItemListA onSelectItem={handleSelectItem} />   
     </div>
   );
 };
 
-export default Quotation;
+export default Quolist;

@@ -151,6 +151,32 @@ border:3px solid#42f587;
 
 }
 
+.ItemList-container_A {
+  background-color: #ffffff;
+  padding: 30px;
+  border: 4px solid #00a878;
+  border-radius: 5px;
+  width: 35vw;
+  margin-left: 70px;
+  margin-top: 50px;
+  margin-Right: 5%;
+  position: relative;
+  left: 16vw;
+}
+.ItemList-container_A button {
+  background-color: #7FD3BB;
+  color: #ffffff;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 5px;
+  height: 5vh;
+}
+
+.ItemList-container_A button:hover {
+  background-color: goldenrod;
+}
 .item-list {
   display: flex;
   flex-direction: column;
