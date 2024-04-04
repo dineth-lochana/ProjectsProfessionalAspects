@@ -492,7 +492,7 @@ app.get("/products", (req, res) => {
 // Use upload.single('Imagepath') middleware to handle single file upload
 app.post("/products", upload.single('Imagepath'), (req, res) => {
   const { ProductName, description, Category, Price } = req.body;
-  const Imagepath = req.file ? req.file.path : null; // Get the file path from req.file
+  const Imagepath = req.file ? req.file.path.replace('public\\uploads\\', 'uploads\\') : null; // Get the relative file path
 
   const q = "INSERT INTO products(`ProductName`, `description`, `Category`, `Imagepath`, `Price`) VALUES (?, ?, ?, ?, ?)";
 
@@ -510,15 +510,6 @@ app.post("/products", upload.single('Imagepath'), (req, res) => {
   });
 });
 
-app.delete("/Products/:ProductID", (req, res) => {
-  const ProductID = req.params.ProductID;
-  const q = " DELETE FROM products WHERE ProductID = ? ";
-
-  db.query(q, [ProductID], (err, data) => {
-    if (err) return res.send(err);
-    return res.json(data);
-  });
-});
 
 app.put("/Products/:ProductID", (req, res) => {
   const ProductID = req.params.ProductID;
