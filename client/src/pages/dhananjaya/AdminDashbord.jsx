@@ -59,7 +59,7 @@ const AdminDashboard = () => {
               </div>
             </div>
           </Link>
-          <Link to="/Quotation">
+          <Link to="/quotation_admin">
             <div className="mproduct">
               <div className="image">
                 <img
