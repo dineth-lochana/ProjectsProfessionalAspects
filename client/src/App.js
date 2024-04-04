@@ -17,6 +17,7 @@ import ItemList from "./pages/shehan/itemlist";
 import ProductList from "./pages/shehan/ProductList";
 import Quolist from "./pages/shehan/Quolist";
 import NotFound from "./pages/shehan/notfound";
+import quotation from "./pages/shehan/quotation";
 
 //For Nisansa
 //import Home from './pages/nisansa/home/Home';
@@ -90,7 +91,7 @@ function App() {
         <Route path="/itemlist" element={<ItemList/>} />
         <Route path="/productlist" element={<ProductList/>} />
         <Route path="/quotation" element={<Quolist/>} />
-
+        <Route path="/quotation_admin" element={<quotation/>} />
 
         <Route exact path="/" element={<Home />} />  
         <Route path="/products" element={<Products />} />
