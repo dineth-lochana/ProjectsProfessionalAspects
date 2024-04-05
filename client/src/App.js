@@ -10,7 +10,10 @@ import Updateprojects from "./pages/dineth/updateprojects";
 import ProjectDetails from "./pages/dineth/projectdetails";
 import Addopinion from "./pages/dineth/addopinion"
 import Updateopinions from "./pages/dineth/updateopinion";
-
+import Settings from "./pages/dineth/settings"
+import AddNews from './pages/dineth/addnews';
+import ManageNews from './pages/dineth/managenews';
+import UpdateNews from './pages/dineth/updatenews';
 
 //For Shehan
 import ItemList from "./pages/shehan/itemlist";
@@ -21,7 +24,6 @@ import QuolistA from "./pages/shehan/quotation";
 
 //For Nisansa
 //import Home from './pages/nisansa/home/Home';
-import Products from './pages/nisansa/products/Products';
 import Login from './pages/nisansa/login/Login';
 import Signup from './pages/nisansa/signup/Signup';
 import Nav from './components/navBar/Nav';
@@ -86,6 +88,10 @@ function App() {
         <Route path="/projectdetails/:id" element={<ProjectDetails/>}/>
         <Route path="/addopinion" element={<Addopinion/>}/>
         <Route path="/updateopinion/:opinionid" element={<Updateopinions/>}/>
+        <Route path="/settings" element={<Settings/>}/>
+        <Route path="/AddNews" element={<AddNews/>}/>
+        <Route path="/ManageNews" element={<ManageNews/>}/>
+        <Route path="/UpdateNews/:newsid" element={<UpdateNews/>}/>
 
 
         <Route path="/itemlist" element={<ItemList/>} />
@@ -94,27 +100,24 @@ function App() {
         <Route path="/quotation_admin" element={<QuolistA/>} />
 
         <Route exact path="/" element={<Home />} />  
-        <Route path="/products" element={<Products />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/login" element={<Login setUseremail={handleSetUseremail}/>} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile useremail={useremail}/>} />
 
 
-
-
-          <Route path="/Product" element={<Product />} />
-          <Route path="/AddProduct" element={<AddProduct />} />
-          <Route path="/UpdateProduct/:ProductID" element={<UpdateProduct />} />
-          <Route path="/AdminDashbord" element={<AdminDashbord />} />
-          <Route path="/Footer" element={<Footer />} />
-          <Route path="/NavigationBar" element={<NavigationBar />} />
-          <Route path="/Home" element={<Home />} />
-          <Route path="/ImageSlider" element={<ImageSlider />} />
-          <Route path="/FireProducts" element={<FireProducts />} />
-          <Route path="/SolarProducts" element={<SolarProducts />} />
-          <Route path="/ControlsProducts" element={<ControlsProducts />} />
-          <Route path="/manageAcounts" element={<ManageAcounts />} />
+        <Route path="/Product" element={<Product />} />
+        <Route path="/AddProduct" element={<AddProduct />} />
+        <Route path="/UpdateProduct/:ProductID" element={<UpdateProduct />} />
+        <Route path="/AdminDashbord" element={<AdminDashbord />} />
+        <Route path="/Footer" element={<Footer />} />
+        <Route path="/NavigationBar" element={<NavigationBar />} />
+        <Route path="/Home" element={<Home />} />
+        <Route path="/ImageSlider" element={<ImageSlider />} />
+        <Route path="/FireProducts" element={<FireProducts />} />
+        <Route path="/SolarProducts" element={<SolarProducts />} />
+        <Route path="/ControlsProducts" element={<ControlsProducts />} />
+        <Route path="/manageAcounts" element={<ManageAcounts />} />
 
 
         <Route path="*" element={<NotFound />} />

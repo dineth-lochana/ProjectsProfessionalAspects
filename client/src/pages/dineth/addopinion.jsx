@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import "./projects.css"
+import "./dineth.css"
 
 const Addopinions = () => {
 
@@ -43,7 +43,11 @@ const Addopinions = () => {
     };
 
     return(
-        <div className="form"> 
+        <div>
+        <br/>
+        <br/> 
+        <div className="form">
+
         <h1>Add New Opinion to showcase</h1>
 
         <input type="text" placeholder="opiniontext" name="opiniontext" onChange={handlechange}></input>
@@ -55,8 +59,9 @@ const Addopinions = () => {
         </button>
 
         <button onClick={handleCancel}>Cancel</button>
-
-
+        </div>
+        <br/>
+        <br/> 
         </div>
     )
  }

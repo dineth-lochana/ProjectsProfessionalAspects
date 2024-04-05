@@ -44,9 +44,6 @@ app.use(express.static('public'));
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Dineth's Code
 
-
-
-
 //Multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -228,6 +225,63 @@ app.put("/opinions/:opinionid", (req, res)=> {
         return res.json("Opinon has been updated succesfully!")
     })
 })
+
+app.get("/news", (req, res) => {
+  const q = "SELECT * FROM news";
+  db.query(q, (err, data) => {
+      if (err) return res.json("Error!");
+      return res.json(data);
+  });
+});
+
+
+// Create a new news item
+app.post("/news", (req, res) => {
+  const q = "INSERT INTO news (`newstitle`, `newstext`, `newsdate`) VALUES (?)";
+  const values = [
+      req.body.newstitle,
+      req.body.newstext,
+      req.body.newsdate
+  ];
+
+  db.query(q, [values], (err, data) => {
+      if (err) return res.json("Error!");
+      return res.json("News item has been created!");
+  });
+});
+
+// Delete a news item
+app.delete("/news/:newsid", (req, res) => {
+  const newsid = req.params.newsid;
+  const q = "DELETE FROM news WHERE newsid = ?";
+
+  db.query(q, [newsid], (err, data) => {
+      if (err) return res.json(err);
+      return res.json("News item has been deleted successfully!");
+  });
+});
+
+// Update a news item
+app.put("/news/:newsid", (req, res) => {
+  const newsid = req.params.newsid;
+  const q = "UPDATE news SET `newstitle`=?, `newstext`=?, `newsdate`=? WHERE newsid = ?";
+
+  const values = [
+      req.body.newstitle,
+      req.body.newstext,
+      req.body.newsdate
+  ];
+
+  db.query(q, [...values, newsid], (err, data) => {
+      if (err) return res.json(err);
+      return res.json("News item has been updated successfully!");
+  });
+});
+
+
+
+
+
 
 
 

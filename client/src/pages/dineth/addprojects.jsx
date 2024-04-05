@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import "./projects.css";
+import "./dineth.css";
 
 const AddProjects = () => {
     const [project, setProject] = useState({

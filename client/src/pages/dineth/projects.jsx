@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-import "./projects.css";
+import "./dineth.css";
 
 const Projects = () => {
     const navigate = useNavigate();
@@ -14,7 +14,8 @@ const Projects = () => {
         try {
             const userEmail = localStorage.getItem('useremail');
             if (!userEmail) {
-                throw new Error('User email not found in localStorage');
+                // Return default values if user email is not found
+                return { userType: null, verified: null };
             }
             const response = await axios.get(`http://localhost:8800/profile/${encodeURIComponent(userEmail)}`);
             console.log("User type is " + response.data.type);
@@ -105,9 +106,7 @@ const Projects = () => {
             <h1 className="centered-heading">Projects Showcase</h1>
             <br />
 
-            {(userType === 1 && verified === "True") && (
-                <button className="add" onClick={handlePrint}>Print Portfolio</button>
-            )}
+            <button className="add" onClick={handlePrint}>Print Portfolio</button>
 
             <div className="projects">
                 {projects.map(project => (
@@ -142,7 +141,7 @@ const Projects = () => {
                         <div className="project" key={opinion.opinionid}>
                             <h2>"{opinion.opiniontext}"</h2>
                             <p>-{opinion.customername}</p>
-                            {(userType === 0 && verified === "True") && (
+                            {(userType === 1 && verified === "True") && (
                                 <>
                                     <button className="update" onClick={() => handleUpdateOpinion(opinion.opinionid)}>Update</button>
                                     <button className="delete" onClick={() => handleDeleteOpinion(opinion.opinionid)}>Delete</button>

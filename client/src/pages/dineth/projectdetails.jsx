@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import './projectdetails.css'; // Importing CSS file
+import './dineth.css'; // Importing CSS file
 
 const Slideshow = ({ images }) => {
     const [index, setIndex] = useState(0);
