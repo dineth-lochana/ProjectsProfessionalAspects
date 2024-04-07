@@ -19,8 +19,9 @@ Thank you for your Hard Work!
 | Forum System | Dilshani Balasooriya |  Main Functionality Completed. |
 
 
+
 *Extra Function*
-| Function| Member | Progress |
+| Function| Member | Extra Function|
 |----------|----------|----------|
 | Login / Profile System | Nisansa Ranthatige |     |
 | Projects / Portfolio System | Dineth Mallawarachchi | Interactive Latest News / Announcements |
