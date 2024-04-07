@@ -16,7 +16,14 @@ Thank you for your Hard Work!
 | Projects / Portfolio System | Dineth Mallawarachchi | Main Functionality Completed. |
 | Quotation System | Shehan Sangeeth | Main Functionality Completed. |
 | Admin Dashboard | Dhananjaya Dilshan | Main Functionality Completed. |
-| Forum System | Dilshani Balasooriya |  |
+| Forum System | Dilshani Balasooriya |  Main Functionality Completed. |
+
+*Extra Function*
+| Login / Profile System | Nisansa Ranthatige |     |
+| Projects / Portfolio System | Dineth Mallawarachchi | Interactive Latest News / Announcements |
+| Quotation System | Shehan Sangeeth | Quotation Email Notification |
+| Admin Dashboard | Dhananjaya Dilshan |   |
+| Forum System | Dilshani Balasooriya |    |
 
 
 <br>
