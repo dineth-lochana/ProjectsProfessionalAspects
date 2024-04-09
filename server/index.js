@@ -413,6 +413,51 @@ app.put("/all/:idmsg", (req, res) => {
 
 
 
+import nodemailer from 'nodemailer';
+const port = 588;
+
+
+app.use(bodyParser.json());
+
+
+app.post('/sendEmail', async (req, res) => {
+  try {
+    const { emailAddress, subject  } = req.body;
+
+
+    let transporter = nodemailer.createTransport({
+      service: 'Gmail', 
+      auth: {
+        user: 'etf.group.7b@gmail.com', 
+        pass: 'mkmjgjpifbyhmveg' 
+      }
+    });
+
+    let mailOptions = {
+      from: 'etf.group.7b@gmail.com',
+      to: emailAddress ,
+      subject: 'New Contact Form Submission',
+      text: `We Received Your Request for a Quotation for " ${subject} "`
+    };
+
+
+    let info = await transporter.sendMail(mailOptions);
+
+    console.log('Email sent: ' + info.response);
+    res.send('Email sent successfully!');
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).send('Error sending email: ' + error.message);
+  }
+});
+
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+
+
 
 
 
