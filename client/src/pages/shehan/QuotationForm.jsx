@@ -14,7 +14,8 @@ const QuotationForm = () => {
   });
 
   const [showNotification, setShowNotification] = useState(false);
-
+  const [submitted, setSubmitted] = useState(false);
+  const [sendingEmail, setSendingEmail] = useState(false); 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -43,6 +44,20 @@ const QuotationForm = () => {
         const response = await axios.post("http://localhost:8800/msg", formData);
         console.log('Server Response:', response.data);
         setShowNotification(true);
+        setSendingEmail(true); 
+    try {
+      await axios.post('http://localhost:8800/sendEmail', formData);
+
+      alert('Email notification sent!');
+      setSubmitted(true);
+    } catch (error) {
+      alert('Error sending email: ' + error.message);
+    }
+    setSendingEmail(false); 
+    setTimeout(() => {
+      setSubmitted(false);
+    }, 1000);
+        
         handleReset();
       } catch (error) {
         console.error('Error submitting form:', error);
@@ -120,7 +135,13 @@ const QuotationForm = () => {
             />
           </label>
           <div className="button-container">
-            <button type="submit">Submit</button>
+          {sendingEmail ? ( 
+                <div className="spinner-border" role="status">
+                  <span className="sr-only"></span>
+                </div>
+              ) : (
+                <button type="submit">Submit</button>
+              )}
             <button type="button" onClick={handleReset}>
               Reset
             </button>
