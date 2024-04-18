@@ -61,7 +61,8 @@ const ItemList = () => {
     const fetchAllRequests = async () => {
       try {
         const res = await axios.get(`http://localhost:8800/all`);
-        setItems(res.data);
+        const sorted = res.data.sort((a, b) => new Date(b.idmsg) - new Date(a.idmsg));
+        setItems(sorted);
       } catch (err) {
         console.log(err);
       }
@@ -100,9 +101,18 @@ const ItemList = () => {
         {items.map((item) => (
           <div key={item.id} className="item-box">
             <h2>{item.Subject}</h2>     
-
-            <button type="button" onClick={() => handlePrint(item)}>Print</button>
+            {(item.admin_view === 1) && ( 
+              <div>
+                <button type="button" onClick={() => handlePrint(item)}>Print</button>
+            <button type="button" onClick={() => handleView(item)}>Already Viewed</button>
+              </div>
+            )}
+            {(item.admin_view === 0) && ( 
+              <div>
+                <button type="button" onClick={() => handlePrint(item)}>Print</button>
             <button type="button" onClick={() => handleView(item)}>View</button>
+              </div>
+            )}
           </div>
         ))}
       </div>
