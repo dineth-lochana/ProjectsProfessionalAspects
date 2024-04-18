@@ -36,7 +36,8 @@ function Nav(props) {
     <nav className="navbar navbar-expand-lg navbar-light p-3 navdesign">
       <div className="container-fluid d-flex justify-content-between align-items-center">
         <Link className="navbar-brand" to="/">
-          <img src={logoImg} alt="Logo" style={{ maxWidth: '100px', maxHeight: '50px' }} />
+         {/*<img src={logoImg} alt="Logo" style={{ maxWidth: '100px', maxHeight: '50px' }} />*/}
+          <img src="./images/logo 2024 .png" alt="Logo" height="90" style={{ paddingLeft: "20px" }} />
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -63,7 +64,7 @@ function Nav(props) {
               <Link className="nav-link" to="/projects">Projects</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/products">Forum</Link>
+              <Link className="nav-link" to="/Educated">Forum</Link>
             </li>            
             <li className="nav-item">
               <Link className="nav-link" to="/profile">Profile</Link>

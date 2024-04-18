@@ -43,6 +43,7 @@ import ImageSlider from './pages/dhananjaya/ImageSlider';
 import FireProducts from './pages/dhananjaya/FireProducts';
 import SolarProducts from './pages/dhananjaya/SolarProducts';
 import ControlsProducts from './pages/dhananjaya/ControlsProducts';
+import Educated from './pages/dhananjaya/Educated';
 import "./Style.css";
 
 
@@ -118,6 +119,7 @@ function App() {
         <Route path="/SolarProducts" element={<SolarProducts />} />
         <Route path="/ControlsProducts" element={<ControlsProducts />} />
         <Route path="/manageAcounts" element={<ManageAcounts />} />
+        <Route path="/Educated" element={<Educated />} />
 
 
         <Route path="*" element={<NotFound />} />

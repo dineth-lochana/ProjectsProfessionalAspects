@@ -3,6 +3,8 @@ import axios from "axios"
 import { useState } from "react"
 import { useEffect } from "react"
 import { Link } from "react-router-dom";
+import swal from 'sweetalert';
+
 
 
 
@@ -22,12 +24,29 @@ const Product = () => {
   }, []);
   const handleDelete = async (ProductID) => {
     try {
-      await axios.delete(`http://localhost:8800/Products/`+ ProductID);
-      window.location.reload()
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this product!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then(async (willDelete) => {
+        if (willDelete) {
+          await axios.delete(`http://localhost:8800/Products/` + ProductID);
+          swal("Poof! Your product has been deleted!", {
+            icon: "success",
+          });
+          window.location.reload();
+        } else {
+          swal("Your product is safe!");
+        }
+      });
     } catch (err) {
       console.log(err);
     }
   };
+  
   const commonStyle = {
     color: 'rgb(2, 2, 2)',
     textAlign: 'center',
@@ -40,7 +59,7 @@ const Product = () => {
       {Product.map((Product) => (
         <div key={Product.ProductID} style={{ border: '2px solid #D5D5D5 ',borderRadius: '10px', margin: '20px auto', padding: '20px', display: 'flex', justifyContent: 'space-between' }}>
           <div className="left">
-          {Product.Imagepath && <img src={`http://localhost:8800/${Product.Imagepath}`} alt="Product" style={{ width: '300px' }} />}
+          {Product.Imagepath && <img src={`http://localhost:8800/${Product.Imagepath}`} alt="Product" style={{ width: '400px' }} />}
           </div>
   
           <div className="right">
