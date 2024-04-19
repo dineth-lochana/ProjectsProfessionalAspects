@@ -1,0 +1,25 @@
+.nav-link {
+    font-size: 20px;
+    color: white;
+}
+
+.nav-link:active {
+    color: gold !important;
+}
+
+.nav-link:hover {
+    color: goldenrod;
+    font-weight: bold;
+    transition: color 0.3s ease;
+
+}
+
+
+.navdesign {
+    background-color: #00a878;
+}
+
+.nav-link {
+    margin-right: 12px;
+}
+

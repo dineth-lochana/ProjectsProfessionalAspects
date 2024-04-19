@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2024 at 01:12 PM
+-- Generation Time: Apr 19, 2024 at 10:03 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -45,7 +45,9 @@ CREATE TABLE `msg` (
 INSERT INTO `msg` (`idmsg`, `Full_Name`, `Subject`, `Company_Name`, `Email_Address`, `Contact_Number`, `Details`, `admin_view`) VALUES
 (7, 'Test', 'Test', 'Test', 'Test@Test.com', 'Test', 'test test 2 test 2', 1),
 (8, 'Test', 'Test', 'Test', 'test2@test.com', 'Test', 'Test', 1),
-(9, 'Test 2', 'Test 2', 'Test', 'test2@test.com', 'test', 'test', 1);
+(9, 'Test 2', 'Test 2', 'Test', 'test2@test.com', 'test', 'test', 1),
+(10, 'Test', 'Test', 'Tes', 'test3@test.com', '123', 'Test', 1),
+(11, 'T', 't', 'I', 'lochandineth@gmail.com', '123', 'Woah', 0);
 
 -- --------------------------------------------------------
 
@@ -71,7 +73,8 @@ INSERT INTO `news` (`newsid`, `newstitle`, `newstext`, `newsdate`) VALUES
 (7, 'Test', 'test', '2024-01-04'),
 (8, 'Test from UI', 'Test from UI Text', '2024-04-05'),
 (9, 'Test from Postman', 'Test from Postman', '2024-04-04'),
-(10, 'What is a KILOMETER?', 'Yes. This is a test.', '2024-04-05');
+(10, 'What is a KILOMETER?', 'Yes. This is a test.', '2024-04-05'),
+(11, 'AMERICA!', 'YEAH!', '2024-04-19');
 
 -- --------------------------------------------------------
 
@@ -91,10 +94,10 @@ CREATE TABLE `opinions` (
 
 INSERT INTO `opinions` (`opinionid`, `opiniontext`, `customername`) VALUES
 (1, 'Very good! Very nice! Wonderful! World class entertainment!', 'Benjamin Franklin!'),
-(2, 'No one knows what the future holds, that\'s why its potential is infinite.', 'Okabe Rintarou'),
 (3, 'Ha! Ha! Ha! All according to Keikaku! Ha! Ha! Ha!', 'Hisashi Hyuuga'),
 (4, 'I\'ll tell you a secret. My weakness is... nothing.', 'Reimu Hakurei'),
-(7, 'This power is something only I can understand', 'Izayoi Sakuya');
+(7, 'This power is something only I can understand', 'Izayoi Sakuya'),
+(8, 'Truly a work of art. It makes me weep!', 'Leo Tolstoy');
 
 -- --------------------------------------------------------
 
@@ -116,8 +119,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ProductID`, `ProductName`, `description`, `Category`, `Imagepath`, `Price`) VALUES
-(38, 'Test', 'Test', 'Fire Detection and Protection', 'Imagepath-1712156323163.PNG', 'Test'),
-(39, 'Test', 'Test', 'Solar', 'uploads\\Imagepath-1712156383221.PNG', 'Test');
+(39, 'Test', 'Test', 'Solar', 'uploads\\Imagepath-1712156383221.PNG', 'Test'),
+(40, 'Test', 'Fire test', 'Fire Detection and Protection', 'uploads\\Imagepath-1713513421045.jpg', '100000');
 
 -- --------------------------------------------------------
 
@@ -150,8 +153,8 @@ INSERT INTO `projects` (`id`, `title`, `info`, `cover`, `images`, `client`, `img
 (14, 'Test 11', 'Hello everyone. I\'m Scott, President of Domino\'s Pizza. Have you heard of Hatsune Miku? Today I\'d like to announce a new collaborative project featuring Hatsune Miku: Domino\'s App, featuring Hatsune Miku. Hatsune Miku exists in a software called Vocaloid. Vocaloid enables you to produce songs. A character called Hatsune Miku sings the songs you create. A great feature is you can create songs as you like. I knew our talented Domino\'s Pizza crew could work together and create great Vocaloid songs. Bokuro P, Eshi, Chiyo Kiyoshi, Furitsu Keshi, everyone! Amazing Vocaloid songs have been created with the fantastic imagination of the crews all over Japan. The challenge was successfully carried out and this new collaborative app was produced.\n\nD O M I N O S P I Z Z A\n\nBased on Miku\'s image, the Domino\'s App changes its appearance. A lot of music and illustrations produced by Domino\'s crew are here. From the menu to the order, it looks very cute, just like Miku. Once your pizza\'s delivered, have some fun with Miku! It comes with a social camera function and you can take various poses, pictures of Miku, very cool. And last, but not least, the live performance! Start the pizza stage live and point the camera towards the pizza box, and the pizza box will turn into a live dancing venue. A live performance of Luv4Night produced by Domino\'s crew! Here we go!\n\nD O M I N O S P I Z Z A\n\nLet\'s enjoy the rest of the performance with the app!', 'uploads/cover-1708767584165.jpg', '', 'Test 11', 'uploads/img1-1708767584176.jpg', 'uploads/img2-1708767584176.jpg', 'uploads/img3-1708767584176.jpg'),
 (15, 'Test 12', 'Test 12', 'uploads/cover-1708766298441.jpg', '', 'Test 12', 'uploads/img1-1708766298476.jpg', 'uploads/img2-1708766298477.jpg', 'uploads/img3-1708766298478.jpg'),
 (16, 'Test 13 Updated', 'Test 13 Updated', 'uploads/cover-1712315307270.jpg', '', 'Test 13 Updated', 'uploads/img1-1712315307294.jpg', 'uploads/img2-1712315307295.jpg', 'uploads/img3-1712315307295.jpg'),
-(19, 'Test Final', 'Test', 'uploads/cover-1712252125489.jpg', '', 'Testing Group', 'uploads/img1-1712252125519.jpg', 'uploads/img2-1712252125519.jpg', 'uploads/img3-1712252125519.jpg'),
-(20, 'Test Super Final', 'To be fair, you have to have a very high IQ to understand Touhou. The humor is extremely subtle, and without a solid grasp of theoretical physics most of the jokes will go over a typical viewer\'s head. There\'s also the references to Japanese mythology and philosophy , which is deftly woven into each and every characterisation - such as Yukari’s personal ability which draws heavily from Lencioni’s theory, for instance. The fans understand this stuff; they have the intellectual capacity to truly appreciate the depths of these jokes, to realize that they\'re not just funny- they say something deep about LIFE. As a consequence people who dislike Touhou truly ARE idiots- of course they wouldn\'t appreciate, for instance, the humour in Marisa’s quippy remark \"Looks more to me like \'Man uses the decimal system,\" which itself is a cryptic reference to Japanese linguistic. I\'m smirking right now just imagining one of those addlepated simpletons scratching their heads in confusion as ZUN\'s genius unfolds itself on their computer screens. What fools... how I pity them. 😂 And yes by the way, I DO have a Mini-Hakkero tattoo. And no, you cannot see it. It\'s for the lolis’ eyes only- And even they have to demonstrate that they\'re within 5 graze points of my own (preferably lower) beforehand.', 'uploads/cover-1712315436243.jpg', '', 'Literally ME', 'uploads/img1-1712315436260.jpg', 'uploads/img2-1712315436261.jpg', 'uploads/img3-1712315436261.jpg');
+(19, 'Test Final FInal', 'Test', 'uploads/cover-1713512867608.jpg', '', 'Testing Group', 'uploads/img1-1713512867623.jpg', 'uploads/img2-1713512867624.jpg', 'uploads/img3-1713512867625.jpg'),
+(21, 'Combined Test', 'Combined Test', 'uploads/cover-1713512848893.jpg', '', 'Combined Test', 'uploads/img1-1713512848927.jpg', 'uploads/img2-1713512848928.jpg', 'uploads/img3-1713512848929.jpg');
 
 -- --------------------------------------------------------
 
@@ -177,7 +180,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `fullname`, `contact`, `address`, `email`, `password`, `type`, `verified`) VALUES
 (9, 'Dineth Mallawarachchi 2', '12345678910', 'No 30, Testing Street, Test City 2.', 'test@test.com', 'test123', 0, 'False'),
 (10, 'Dineth Mallawarachchi 2', '123456789', 'No 30, Testing Street, Test City.', 'test2@test.com', 'test123', 0, 'True'),
-(11, 'Dineth Mallawarachchi 2', '123456789', 'No 30, Testing Street, Test City.', 'test3@test.com', 'test123', 1, 'True');
+(11, 'Dineth Mallawarachchi 2', '123456789', 'No 30, Testing Street, Test City.', 'test3@test.com', 'test123', 1, 'True'),
+(12, 'Mr Testing', '1234', '1234', 'lochandineth@gmail.com', '123', 0, 'True');
 
 --
 -- Indexes for dumped tables
@@ -228,37 +232,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `msg`
 --
 ALTER TABLE `msg`
-  MODIFY `idmsg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idmsg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `newsid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `newsid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `opinions`
 --
 ALTER TABLE `opinions`
-  MODIFY `opinionid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `opinionid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
