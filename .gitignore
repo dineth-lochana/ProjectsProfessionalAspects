@@ -3,7 +3,7 @@
 # dependencies
 /Group Client/node_modules
 /Dilshani Client/node_modules
-/Dilshani + Group Server test/node_modules
+/Dilshani Plus Group Server Test/node_modules
 
 /.pnp
 .pnp.js
