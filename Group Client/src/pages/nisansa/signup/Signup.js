@@ -11,7 +11,11 @@ function Signup() {
     email: '',
     password: '',
     confirmPassword: '',
+    verificationCode: '',
   });
+  const [isCodeSent, setIsCodeSent] = useState(false); 
+    const [verificationCode, setVerificationCode] = useState('');
+
   const navigate = useNavigate();
 
   // Handle changes in form fields
@@ -20,9 +24,13 @@ function Signup() {
     setFormData({ ...formData, [id]: value });
   };
 
+
+
+
+
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     const { confirmPassword, ...dataToSend } = formData;
     if (formData.password !== formData.confirmPassword) {
@@ -31,15 +39,39 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post('http://localhost:8800/signup', dataToSend);
-      console.log(response.data);
-      swal("Success!", "Signup successful!", "success")
-        .then(() => navigate('/login'));
+      if (!isCodeSent) {
+        
+        const verificationCode = Math.floor(100000 + Math.random() * 900000);
+        setVerificationCode(verificationCode.toString()); 
+
+       
+        await axios.post('http://localhost:8800/sendEmail', {
+          emailAddress: formData.email,
+          subject: `Your verification code is: ${verificationCode}`
+        });
+
+
+        setIsCodeSent(true);
+        swal("Verification Code Sent", "Please check your email and enter the verification code.", "info");
+      } else {
+       
+        if (formData.verificationCode !== verificationCode) {
+          swal("Error!", "Invalid verification code!", "error");
+          return;
+        }
+
+      
+        const response = await axios.post('http://localhost:8800/signup', dataToSend);
+        console.log(response.data);
+        swal("Success!", "Signup successful!", "success")
+          .then(() => navigate('/login'));
+      }
     } catch (error) {
       console.error('Signup error:', error.response ? error.response.data : error.message);
       swal("Failed!", "Signup failed. Please try again.", "error");
     }
-  };
+  };  
+
 
   return (
     <div className="container2">
@@ -133,6 +165,23 @@ function Signup() {
                     />
                   </div>
                 </div>
+
+                <div className="mb-3">
+                      <label htmlFor="verificationCode" className="form-label">Verification Code</label>
+                      <div className="input-group">
+                        <span className="input-group-text"><i className="bi bi-lock-fill"></i></span>
+                        <input
+                          type="text"
+                          id="verificationCode"
+                          className="form-control"
+                          placeholder="Enter the verification code"
+                          value={formData.verificationCode}
+                          onChange={handleChange}
+                          disabled={!isCodeSent} // Disable the input field until the code is sent
+                        />
+                      </div>
+                </div>
+
                 <div className="d-grid">
                   <button type="submit" className="btn btn-success btn-lg">Sign Up</button>
                 </div>
