@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2024 at 10:04 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Apr 28, 2024 at 01:46 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,10 +40,12 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `descr`, `createdAt`, `userId`, `postId`) VALUES
-(35, 'hi', '2024-04-06', 16, 47),
-(41, 'text comm1', '2024-04-06', 16, 50),
-(43, 'text comm 2', '2024-04-06', 9, 50),
-(44, 'testCom', '2024-04-16', 13, 47);
+(1, 'test comment', '2024-03-24', 6, 6),
+(2, 'new test comment', '2024-03-30', 6, 6),
+(3, 'new comment for testing feature', '2024-03-30', 6, 6),
+(4, 'loooooooooool', '2024-03-30', 6, 4),
+(5, 'test', '2024-03-30', 7, 4),
+(6, 'new com', '2024-03-30', 7, 6);
 
 -- --------------------------------------------------------
 
@@ -67,42 +69,7 @@ INSERT INTO `likes` (`userId`, `postId`) VALUES
 (6, 1),
 (7, 4),
 (7, 1),
-(7, 3),
-(8, 8),
-(6, 8),
-(6, 7),
-(6, 6),
-(6, 3),
-(5, 9),
-(9, 10),
-(9, 7),
-(9, 12),
-(9, 13),
-(9, 14),
-(9, 16),
-(11, 16),
-(11, 17),
-(9, 17),
-(9, 18),
-(13, 19),
-(9, 20),
-(9, 25),
-(14, 25),
-(14, 19),
-(9, 27),
-(9, 19),
-(16, 35),
-(16, 25),
-(16, 19),
-(16, 39),
-(16, 43),
-(9, 43),
-(16, 49),
-(16, 50),
-(16, 47),
-(9, 47),
-(9, 50),
-(13, 47);
+(7, 3);
 
 -- --------------------------------------------------------
 
@@ -123,9 +90,18 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `descr`, `img`, `userId`, `createdAt`) VALUES
-(47, 'Test', '', 9, '2024-04-06 10:24:35'),
-(50, 'test 1', '1712381158786img.jpeg', 16, '2024-04-06 10:55:58'),
-(55, 'Testing the combined server.... Hello!', '', 17, '2024-04-19 13:07:47');
+(1, 'test', '', 6, '2024-03-24 00:00:00'),
+(2, 'test 2', '', 6, '2024-03-24 00:00:00'),
+(3, 'test', '', 6, '2024-03-30 05:28:41'),
+(4, 'this is a new post', '', 6, '2024-03-30 05:28:52'),
+(5, 'test with image', '', 6, '2024-03-30 05:40:30'),
+(6, 'test with image', '1711757453284Screenshot 2023-08-12 132147.png', 6, '2024-03-30 05:40:53'),
+(7, 'Testing', '', 10, '2024-03-30 21:22:25'),
+(8, 'Test', '1711813981498.DS_Store', 10, '2024-03-30 21:23:01'),
+(10, 'TEEEEEST', '1714302541851cover-1708766970000.jpg', 11, '2024-04-28 16:39:01'),
+(11, 'Teeest 2 ', '1714302554017cover-1708767488557.jpg', 11, '2024-04-28 16:39:14'),
+(12, 'Test 33333333', '', 11, '2024-04-28 17:02:31'),
+(13, 'teest 33333333333333333333333333333', '17143039760401712202490619Modern Colorful Collaboration Strategy Diagram Brainstorm.png', 11, '2024-04-28 17:02:56');
 
 -- --------------------------------------------------------
 
@@ -138,21 +114,23 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `role` varchar(2000) NOT NULL
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `name`, `role`) VALUES
-(7, 'vish', 'vish@gmail.com', '$2a$10$eszmrcdkDS0Ftd/1Czgq/ugj8aZJEeXYEw49ZrkcDCwEMukkPtFVO', 'vish65610', 'user'),
-(9, 'dil', 'dil@123.gmail.com', '$2a$10$g1sidp7BorHe4IFRi0si4u765hNxhh9ogmVXIpCbNT9jhJWZfr66i', 'dil', 'user'),
-(13, 'cha', 'cha@gmail.com', '$2a$10$hhtPX4.tPvClL92j1sb1M.3mPUyfxxdNMzGnB8FnWc3Gx5OBwNMTi', 'cha', 'user'),
-(16, 'user1', 'user1@gmail.com', '$2a$10$jR6de3BnF3TWeaxxzfZ3Ueoxe5tutSM0P6VkfVCgWdgbY6mRa8jJW', 'user1', 'admin'),
-(17, 'test', 'test@test.com', '$2a$10$9uUxPHGemU6sUKrINW2k3ukmy7vLAO/6UE/80TzqwGjPxWCYiPype', 'test123', ''),
-(18, 'test2', 'test2@test.com', '$2a$10$Og8qNXQC.O5DhcivpLeYfOR5bDSm1F3vDxhoHFjUuEZpWB1W2xMXu', 'test2', '');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `name`) VALUES
+(1, 'mc_jayarathna', 'chamika.app@gmail.com', '$2a$10$9O4lBHzhynLG/MWCPTiyOOJukeMIp.Run32mlgtMKg8nFLZ3.ztaa', 'chamika'),
+(2, 'dilshani-balasooriya', 'dilshanibalasoorya09@gmail.com', '$2a$10$s0rv8QBzcrDkNbAObgmW3u2j7EUDtnIWk.BaViTxQ6V35fUb6O.ou', 'Dilshani Balasooriya'),
+(5, 'dil', 'dil@123.gmail.com', '$2a$10$G7oSYLieTn7xdZQSm5E98eMulgHnWsn8MoGCPbAxBIbgDCUV6r9HG', 'dil'),
+(6, 'akila', 'akilajava99@gmail.com', '$2a$10$ImsEyKZaBlSVHVPLoMfngua29TkNGieY.h7AI6RUwIDGcZUYIgWYi', 'akila'),
+(7, 'vish', 'vish@gmail.com', '$2a$10$eszmrcdkDS0Ftd/1Czgq/ugj8aZJEeXYEw49ZrkcDCwEMukkPtFVO', 'vish65610'),
+(8, 'dinethlm', 'test@test.com', '$2a$10$Z9RVd1rg0WwZv.XDyNeRH.LITDxcxGIysE2dLyQEI4uAx2wwlJteW', 'test123'),
+(9, 'testing', 'test2@test.com', '$2a$10$upX/G.7vvkv0QsGVqzMSdeXmsWdiOFZwkcGhpo0STHYCzvnFe2dnq', 'test2'),
+(10, 'abc', 'abc@abc.com', '$2a$10$dhr5qu/T4jtouNF.ENfBGegcqEjMTkG9SUFLPJsf8KzuhpbqB6s0i', 'abc'),
+(11, 'test', 'test@test,com', '$2a$10$bf6lvxN8rerGMX00VY6JkeUjHRBzKMZk9UAfCPcusNQrvf4yfx48m', 'test');
 
 --
 -- Indexes for dumped tables
@@ -188,19 +166,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
