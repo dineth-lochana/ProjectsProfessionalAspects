@@ -1,0 +1,62 @@
+@import "../../style.scss";
+
+.home{
+  @include themify($themes) {
+    padding: 20px 70px;
+    background-color:themed("bgSoft");
+    min-height: 100vh;
+
+    @include mobile {
+      padding: 10px;
+    }
+
+    @include tablet{
+      padding: 20px;
+    }
+  }
+ }
+
+ @media print {
+  .navbar-container {
+    display: none; /* Hide the navbar */
+  }
+}
+
+@media print {
+  .share-container {
+    display: none;
+  }
+}
+
+@media print {
+  .print-button {
+    display: none;
+  }
+}
+
+  .print-button {
+    button {
+      background-color: #007bff; 
+      color: #fff; 
+      border: none;
+      padding: 10px 20px; 
+      font-size: 16px; 
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 1rem;
+  
+      &:hover {
+        background-color: #0056b3; 
+      }
+  
+      &:focus {
+        outline: none;
+      }
+  
+      &:disabled {
+        opacity: 0.5; 
+        cursor: not-allowed; 
+    }
+  }
+}
+

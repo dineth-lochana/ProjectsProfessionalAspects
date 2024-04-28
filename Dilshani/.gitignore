@@ -1,9 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/Group/Group Client/node_modules
-/Dilshani/client/node_modules
-/Dilshani/server/node_modules
+/Group Client/node_modules
+/Dilshani Client/node_modules
+/Dilshani Plus Group Server Test/node_modules
 
 /.pnp
 .pnp.js
