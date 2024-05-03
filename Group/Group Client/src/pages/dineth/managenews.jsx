@@ -7,6 +7,8 @@ import "./dineth.css";
 const ManageNews = () => {
     const [news, setNews] = useState([]);
     const [error, setError] = useState("");
+    const [newsContent, setNewsContent] = useState("");
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -38,6 +40,29 @@ const ManageNews = () => {
         }
     };
 
+
+
+    const handleSendToAll = async () => {
+      if (newsContent.trim() === "") {
+        alert("Please enter the news content.");
+        return;
+      }
+
+      try {
+        await axios.post("http://localhost:8800/send-email-to-all-users", { emailText: newsContent });
+        alert("News content sent to all users successfully!");
+        setNewsContent(""); // Clear the news content input
+      } catch (error) {
+        console.error("Error sending news content:", error);
+        alert("Error sending news content. Please try again.");
+      }
+    };
+
+    const handleNewsContentChange = (e) => {
+      setNewsContent(e.target.value);
+    };
+
+
     return (
         <div>
             <br />
@@ -61,11 +86,22 @@ const ManageNews = () => {
             </div>
 
             <br />
-            <div className="add-news-button" align="center">
-                <Link to="/AddNews">
-                    <button>Add New News</button>
-                </Link>
+
+           <div className="add-news-button" align="center">
+              <Link to="/AddNews">
+                <button>Add New News</button>
+              </Link>
+              <div>
+                <textarea
+                  placeholder="Enter news content"
+                  value={newsContent}
+                  onChange={handleNewsContentChange}
+                />
+                <button onClick={handleSendToAll}>Send News to All</button>
+              </div>
             </div>
+
+
 
             <br />
             {error && <p>{error}</p>}

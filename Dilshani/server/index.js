@@ -299,6 +299,64 @@ app.put("/news/:newsid", (req, res) => {
 });
 
 
+//etf.group.7b@gmail.com 
+//pass: mkmjgjpifbyhmveg
+//Let's try this!
+app.post('/send-email-to-all-users', async (req, res) => {
+  try {
+    const { emailText } = req.body;
+
+    const q = "SELECT DISTINCT(email) FROM users";
+    db3.query(q, (err, results) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Error fetching email addresses');
+      }
+
+      const emailAddresses = results.map((result) => result.email);
+
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'etf.group.7b@gmail.com',
+          pass: 'mkmjgjpifbyhmveg',
+        },
+      });
+
+      const mailOptions = {
+        from: 'etf.group.7b@gmail.com',
+        to: emailAddresses,
+        subject: 'GreenTech News Update!',
+        text: emailText,
+      };
+
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error(error);
+          return res.status(500).send('Error sending email');
+        }
+        console.log('Email sent:', info.response);
+        res.send('Email sent successfully!');
+      });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error sending email');
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Shehan's Code
 

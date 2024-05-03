@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import "./dineth.css";
 
 const AddNews = () => {
@@ -21,7 +20,13 @@ const AddNews = () => {
     e.preventDefault();
 
     try {
+      
       await axios.post("http://localhost:8800/news", news);
+
+      
+      const emailText = `New News: ${news.newstitle}\n\n${news.newstext}`;
+      await axios.post("http://localhost:8800/send-email-to-all-users", { emailText });
+
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -45,13 +50,12 @@ const AddNews = () => {
           placeholder="News Title"
           name="newstitle"
           onChange={handleChange}
-        ></input>
+        />
         <textarea
           placeholder="News Text"
           name="newstext"
           onChange={handleChange}
-        ></textarea>
-
+        />
         <button onClick={handleClick}>Add News</button>
         <button onClick={handleCancel}>Cancel</button>
       </div>
