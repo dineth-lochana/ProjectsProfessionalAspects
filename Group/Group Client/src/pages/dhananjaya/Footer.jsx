@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
+
 
 function Footer() {
+
+
+
   return (
+
     <div>
       <footer className="footer">
         <div className="footer-content">
@@ -50,3 +55,4 @@ function Footer() {
 }
 
 export default Footer;
+

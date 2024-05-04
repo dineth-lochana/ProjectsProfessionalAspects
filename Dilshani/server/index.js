@@ -306,44 +306,113 @@ app.post('/send-email-to-all-users', async (req, res) => {
   try {
     const { emailText } = req.body;
 
-    const q = "SELECT DISTINCT(email) FROM users";
-    db3.query(q, (err, results) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Error fetching email addresses');
-      }
+    const queryUsers = "SELECT DISTINCT(email) FROM users";
+    const queryNewsletter = "SELECT DISTINCT(email) FROM newsletter_acc";
 
-      const emailAddresses = results.map((result) => result.email);
-
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'etf.group.7b@gmail.com',
-          pass: 'mkmjgjpifbyhmveg',
-        },
+    const getEmails = (query) => {
+      return new Promise((resolve, reject) => {
+        db3.query(query, (err, results) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(results.map((result) => result.email));
+          }
+        });
       });
+    };
 
-      const mailOptions = {
-        from: 'etf.group.7b@gmail.com',
-        to: emailAddresses,
-        subject: 'GreenTech News Update!',
-        text: emailText,
-      };
+    const usersEmails = await getEmails(queryUsers);
+    const newsletterEmails = await getEmails(queryNewsletter);
 
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.error(error);
-          return res.status(500).send('Error sending email');
-        }
-        console.log('Email sent:', info.response);
-        res.send('Email sent successfully!');
-      });
+    const allEmails = [...new Set([...usersEmails, ...newsletterEmails])];
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'etf.group.7b@gmail.com',
+        pass: 'mkmjgjpifbyhmveg',
+      },
     });
+
+    const mailOptions = {
+      from: 'your-email@gmail.com',
+      to: allEmails.join(', '), 
+      subject: 'GreenTech News Update!',
+      text: emailText,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).send('Error sending email');
+      }
+      console.log('Email sent:', info.response);
+      res.send('Email sent successfully!');
+    });
+
   } catch (error) {
     console.error(error);
     res.status(500).send('Error sending email');
   }
 });
+
+
+//Subscribing to Newletter
+app.post("/subscribe", (req, res) => {
+    const { email } = req.body; 
+    const checkQuery = "SELECT * FROM newsletter_acc WHERE email = ?";
+    const insertQuery = "INSERT INTO newsletter_acc (email) VALUES (?)";
+
+    db3.query(checkQuery, [email], (err, result) => {
+        if (err) {
+            console.error("Error fetching email:", err);
+            return res.status(500).json({ message: "Database error during email check." });
+        }
+        
+        if (result.length > 0) {
+            return res.status(409).json({ message: "Email already subscribed." });
+        } else {
+            db3.query(insertQuery, [email], (err, result) => {
+                if (err) {
+                    console.error("Error inserting email:", err);
+                    return res.status(500).json({ message: "Database error during email insertion." });
+                }
+                return res.status(201).json({ message: "Email successfully subscribed." });
+            });
+        }
+    });
+});
+
+
+//Retrieve all Emails
+app.get('/all-emails', (req, res) => {
+    const queryUsers = "SELECT DISTINCT(email) FROM users";
+    const queryNewsletter = "SELECT DISTINCT(email) FROM newsletter_acc";
+
+    db3.query(queryUsers, (err, usersEmails) => {
+        if (err) {
+            console.error('Error fetching user emails:', err);
+            return res.status(500).send("Error fetching user emails");
+        }
+
+        db3.query(queryNewsletter, (err, newsletterEmails) => {
+            if (err) {
+                console.error('Error fetching newsletter emails:', err);
+                return res.status(500).send("Error fetching newsletter emails");
+            }
+
+            const allEmails = [...new Set([...usersEmails.map(email => email.email), ...newsletterEmails.map(email => email.email)])];
+
+            res.json(allEmails);
+        });
+    });
+});
+
+
+
+
+
+
 
 
 

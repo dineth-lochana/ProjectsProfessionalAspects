@@ -33,6 +33,7 @@ function Nav(props) {
   };
 
   return (
+    <div className="nisansa_nav">
     <nav className="navbar navbar-expand-lg navbar-light p-3 navdesign">
       <div className="container-fluid d-flex justify-content-between align-items-center">
         <Link className="navbar-brand" to="/">
@@ -85,6 +86,8 @@ function Nav(props) {
         </div>
       </div>
     </nav>
+    </div>
+    
   );
 }
 

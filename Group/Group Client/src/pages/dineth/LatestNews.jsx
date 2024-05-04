@@ -19,17 +19,56 @@ const LatestNews = () => {
     fetchLatestNews();
   }, []);
 
-  // Function to format date in "day, month, year" format
   const formatDate = (dateString) => {
     const options = { day: "numeric", month: "long", year: "numeric" };
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
+
+  const handleNewsletterSignup = async (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+
+    try {
+      const response = await axios.post('http://localhost:8800/subscribe', { email });
+      alert(response.data.message);
+    } catch (error) {
+      console.error("Error subscribing to newsletter:", error);
+      alert('Failed to subscribe to newsletter.');
+    }
+  };
+
+
 
   return (
     <div>
       <h1 style={{ textAlign: "center", paddingTop: "100px", fontSize: "50px" }}>
         Latest News
       </h1>
+      <div style={{ textAlign: "center" }}>
+      
+          <br/>
+          <div className="form">
+          <form onSubmit={handleNewsletterSignup}>
+            <input
+              type="email"
+              name="email"
+              placeholder="Subscribe for News!"
+              required
+              
+            />
+            <button type="submit">
+              Subscribe
+            </button>
+
+
+          </form>
+          </div>
+          <br/>
+
+          
+          <br/>
+      
+      </div>
       <div>
         {latestNews.map((newsItem) => (
           <div key={newsItem.newsid}>

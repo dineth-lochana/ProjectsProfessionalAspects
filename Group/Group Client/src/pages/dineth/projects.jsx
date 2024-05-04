@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 import "./dineth.css";
 
@@ -57,16 +55,6 @@ const Projects = () => {
         fetchData();
     }, []);
 
-    const handlePrint = () => {
-        const input = document.getElementById("printportfolio");
-        html2canvas(input, { scale: 1, useCORS: true })
-            .then((canvas) => {
-                const imgData = canvas.toDataURL('image/jpeg', 1.0);
-                const pdf = new jsPDF('p', 'px', [1098, 2570]);
-                pdf.addImage(imgData, 'JPEG', 0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight());
-                pdf.save("download.pdf");
-            });
-    };
 
     const handleDeleteProject = async (id) => {
         try {
@@ -98,6 +86,28 @@ const Projects = () => {
         navigate(`/projectdetails/${id}`);
     };
 
+
+
+    const handlePrint = async () => {
+        const navbar = document.querySelector(".nisansa_nav");
+        const footer = document.querySelector(".footer");
+        const buttons = document.querySelectorAll(".view,.add,.update,.delete");
+
+        navbar.style.display = "none";
+        footer.style.display = "none";
+        buttons.forEach(button => button.style.display = "none");
+
+        window.print();
+
+        navbar.style.display = "block";
+        footer.style.display = "block";
+        buttons.forEach(button => button.style.display = "flex");
+    };
+
+
+
+
+
     return (
         <div id="printportfolio">
             <br />
@@ -106,7 +116,7 @@ const Projects = () => {
             <h1 className="centered-heading">Projects Showcase</h1>
             <br />
 
-            <button className="add" onClick={handlePrint}>Print Portfolio</button>
+            <button className="add" onClick={handlePrint} >Print Portfolio</button>
 
             <div className="projects">
                 {projects.map(project => (
@@ -114,7 +124,7 @@ const Projects = () => {
                         {project.cover && <img src={`http://localhost:8800/${project.cover}`} alt="Cover" />}
                         <h2>{project.title}</h2>
                         <p>{project.client}</p>
-                        <button className="view" onClick={() => handleViewProject(project.id)}>View</button>
+                        <button className="update" onClick={() => handleViewProject(project.id)}>View</button>
                         {(userType === 1 && verified === "True") && (
                             <>
                                 <button className="update" onClick={() => handleUpdateProject(project.id)}>Update</button>
@@ -126,7 +136,7 @@ const Projects = () => {
             </div>
 
             {(userType === 1 && verified === "True") && (
-                <button className="add"><Link to="/addprojects">Add new Project</Link> </button>
+                <button className="add" ><Link to="/addprojects">Add new Project</Link> </button>
             )}
 
             <br />
@@ -151,7 +161,7 @@ const Projects = () => {
                     ))}
                 </div>
                 {(userType === 0 && verified === "True") && (
-                    <button className="add"><Link to="/addopinion">Add new Testimonial</Link> </button>
+                    <button className="add" ><Link to="/addopinion">Add new Testimonial</Link> </button>
                 )}
                 <br />
                 <br />

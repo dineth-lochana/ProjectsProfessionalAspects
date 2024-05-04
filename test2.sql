@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2024 at 10:03 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: May 04, 2024 at 08:15 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -79,6 +79,26 @@ INSERT INTO `news` (`newsid`, `newstitle`, `newstext`, `newsdate`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `newsletter_acc`
+--
+
+CREATE TABLE `newsletter_acc` (
+  `id` int(11) NOT NULL,
+  `email` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `newsletter_acc`
+--
+
+INSERT INTO `newsletter_acc` (`id`, `email`) VALUES
+(1, 'Test@test.com'),
+(2, 'lochandineth@gmail.com'),
+(3, 'jokahi1004@lewenbo.com');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `opinions`
 --
 
@@ -119,8 +139,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ProductID`, `ProductName`, `description`, `Category`, `Imagepath`, `Price`) VALUES
-(39, 'Test', 'Test', 'Solar', 'uploads\\Imagepath-1712156383221.PNG', 'Test'),
-(40, 'Test', 'Fire test', 'Fire Detection and Protection', 'uploads\\Imagepath-1713513421045.jpg', '100000');
+(40, 'Test', 'Fire test', 'Fire Detection and Protection', 'uploads\\Imagepath-1713513421045.jpg', '100000'),
+(43, 'Z222', 'Z222', 'Fire Detection and Protection', 'uploads\\Imagepath-1714791218103.jpeg', 'Z222');
 
 -- --------------------------------------------------------
 
@@ -154,7 +174,8 @@ INSERT INTO `projects` (`id`, `title`, `info`, `cover`, `images`, `client`, `img
 (15, 'Test 12', 'Test 12', 'uploads/cover-1708766298441.jpg', '', 'Test 12', 'uploads/img1-1708766298476.jpg', 'uploads/img2-1708766298477.jpg', 'uploads/img3-1708766298478.jpg'),
 (16, 'Test 13 Updated', 'Test 13 Updated', 'uploads/cover-1712315307270.jpg', '', 'Test 13 Updated', 'uploads/img1-1712315307294.jpg', 'uploads/img2-1712315307295.jpg', 'uploads/img3-1712315307295.jpg'),
 (19, 'Test Final FInal', 'Test', 'uploads/cover-1713512867608.jpg', '', 'Testing Group', 'uploads/img1-1713512867623.jpg', 'uploads/img2-1713512867624.jpg', 'uploads/img3-1713512867625.jpg'),
-(21, 'Combined Test', 'Combined Test', 'uploads/cover-1713512848893.jpg', '', 'Combined Test', 'uploads/img1-1713512848927.jpg', 'uploads/img2-1713512848928.jpg', 'uploads/img3-1713512848929.jpg');
+(21, 'Combined Test', 'Combined Test', 'uploads/cover-1713512848893.jpg', '', 'Combined Test', 'uploads/img1-1713512848927.jpg', 'uploads/img2-1713512848928.jpg', 'uploads/img3-1713512848929.jpg'),
+(22, 'Test', 'Work is almost done for the most part Need Volunteers for;  1. Summary. (1 - 2 Pages)  (Half Page for each of the these) 2. Performance Requirements (Throughput, Reponse Time, Storage, etc...) 3. Operational Requirements.  Additionally need from each person 1. Test Cases (3-4) to put in the Report.', 'uploads/cover-1714802979293.jpg', '', 'Test', 'uploads/img1-1714802979335.jpg', 'uploads/img2-1714802979335.jpg', 'uploads/img3-1714802979336.jpg');
 
 -- --------------------------------------------------------
 
@@ -200,6 +221,12 @@ ALTER TABLE `news`
   ADD PRIMARY KEY (`newsid`);
 
 --
+-- Indexes for table `newsletter_acc`
+--
+ALTER TABLE `newsletter_acc`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `opinions`
 --
 ALTER TABLE `opinions`
@@ -241,6 +268,12 @@ ALTER TABLE `news`
   MODIFY `newsid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `newsletter_acc`
+--
+ALTER TABLE `newsletter_acc`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `opinions`
 --
 ALTER TABLE `opinions`
@@ -250,13 +283,13 @@ ALTER TABLE `opinions`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users`
