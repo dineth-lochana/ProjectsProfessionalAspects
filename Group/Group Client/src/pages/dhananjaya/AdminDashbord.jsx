@@ -68,6 +68,20 @@ const AdminDashboard = () => {
               </div>
             </div>
           </Link>
+
+          {/* New tile to open ManageNews route */}
+          <Link to="/ManageNewsLetter">
+            <div className="mproduct">
+              <div className="image">
+                <img src="./images/add.png" alt="Manage News" style={{ width: "350px", paddingTop: "10px", paddingLeft: "10px" }} />
+              </div>
+              <div className="name">
+                <br />
+                <h3>Manage News Letter</h3>
+              </div>
+            </div>
+          </Link>
+
         </div>
       </div>
     </div>

@@ -411,6 +411,40 @@ app.get('/all-emails', (req, res) => {
 
 
 
+app.get('/newsletter-emails', (req, res) => {
+    const query = "SELECT * FROM newsletter_acc";
+
+    db3.query(query, (err, emails) => {
+        if (err) {
+            console.error('Error fetching newsletter emails:', err);
+            return res.status(500).send("Error fetching newsletter emails");
+        }
+
+        res.json(emails);
+    });
+});
+
+app.delete('/newsletter-emails/:id', (req, res) => {
+    const emailId = req.params.id;
+    const query = "DELETE FROM newsletter_acc WHERE id = ?";
+
+    db3.query(query, emailId, (err, result) => {
+        if (err) {
+            console.error('Error deleting newsletter email:', err);
+            return res.status(500).send("Error deleting newsletter email");
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).send("Email not found");
+        }
+
+        res.send("Email deleted successfully");
+    });
+});
+
+
+
+
 
 
 

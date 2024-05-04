@@ -14,6 +14,7 @@ import Settings from "./pages/dineth/settings"
 import AddNews from './pages/dineth/addnews';
 import ManageNews from './pages/dineth/managenews';
 import UpdateNews from './pages/dineth/updatenews';
+import ManageNewsLetter from './pages/dineth/ManageNewsLetter';
 
 //For Shehan
 import ItemList from "./pages/shehan/itemlist";
@@ -93,6 +94,9 @@ function App() {
         <Route path="/AddNews" element={<AddNews/>}/>
         <Route path="/ManageNews" element={<ManageNews/>}/>
         <Route path="/UpdateNews/:newsid" element={<UpdateNews/>}/>
+        <Route path="/ManageNewsLetter" element={<ManageNewsLetter/>}/>
+
+
 
 
         <Route path="/itemlist" element={<ItemList/>} />

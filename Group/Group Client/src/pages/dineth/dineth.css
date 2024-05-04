@@ -258,6 +258,22 @@ button:hover {
   align-items: center; /* Center horizontally */
 }
 
+.emails {
+    text-align: center;
+}
+
+.email-table {
+    margin: 0 auto;
+}
+
+.email-table td {
+    padding: 5px 10px;
+}
+
+.email-table button {
+    padding: 5px 10px;
+}
+
 @media screen and (min-width: 768px) {
     .project-detail-container {
         flex-direction: row; 
