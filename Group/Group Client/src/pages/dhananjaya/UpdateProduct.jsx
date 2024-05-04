@@ -1,78 +1,104 @@
 import axios from "axios";
-import React from "react";
-import { useState } from "react";
-import { Link, useNavigate ,useLocation} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const UpdateProduct = () => {
-  const [Product, setProducts] = useState({
+  const [product, setProduct] = useState({
     ProductName: "",
     description: "",
     Category: "",
-    Imagepath: "",
+    Imagepath: null,
     Price: "",
-    
   });
-  const [error,setError] = useState(false)
-
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const ProductID = location.pathname.split("/")[2];
+  const productId = location.pathname.split("/")[2];
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8800/Products/${productId}`);
+        const productData = res.data;
+        setProduct(productData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchProduct();
+  }, [productId]);
 
   const handleChange = (e) => {
-    if (e.target.name === 'Imagepath') {
-      
-      setProducts((prev) => ({ ...prev, [e.target.name]: e.target.files[0] }));
+    const { name, value, files } = e.target;
+    if (name === 'Imagepath') {
+      setProduct((prev) => ({ ...prev, [name]: files[0] }));
     } else {
-      setProducts((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+      setProduct((prev) => ({ ...prev, [name]: value }));
     }
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8800/Products/`+ProductID, Product);
+      const formData = new FormData();
+      formData.append("ProductName", product.ProductName);
+      formData.append("description", product.description);
+      formData.append("Category", product.Category);
+      formData.append("Price", product.Price);
+      formData.append("Imagepath", product.Imagepath);
+
+      await axios.put(`http://localhost:8800/Products/${productId}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       navigate("/Product");
     } catch (err) {
       console.log(err);
-      setError(true)
+      setError(true);
     }
   };
+
   return (
-    <div style={{ paddingBottom:'100px' ,paddingTop:'150px'}}>
-    <div className="form">
-    <h1 style={{ textAlign: 'center', fontSize: '30px' }}>Update the  Product</h1>
-    <input
-      type="text"
-      placeholder="Product Name"
-      name="ProductName"
-      onChange={handleChange}
-    />
-    <textarea
-      rows={5}
-      type="text"
-      placeholder="Product description"
-      name="description"
-      onChange={handleChange}
-    />
-    <input
-      type="text"
-      placeholder="{Product.Price}"
-      name="Price"
-      onChange={handleChange}
-    />
-<input type="file" name="Imagepath" onChange={handleChange} accept="image/*" />
-       <input
-      type="text"
-      placeholder="Product Category"
-      name="Category"
-      onChange={handleChange}
-    />
-    <button onClick={handleClick}>Update</button>
-    {error && "Something went wrong!"}
-   
-  </div>
-  </div>
+    <div style={{ paddingBottom: '100px', paddingTop: '150px' }}>
+      <div className="form">
+        <h1 style={{ textAlign: 'center', fontSize: '30px' }}>Update Product</h1>
+        <input
+          type="text"
+          placeholder="Product Name"
+          name="ProductName"
+          value={product.ProductName}
+          onChange={handleChange}
+          required
+        />
+        <textarea
+          rows={5}
+          placeholder="Product description"
+          name="description"
+          value={product.description}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Product price"
+          name="Price"
+          value={product.Price}
+          onChange={handleChange}
+          required
+        />
+        <input type="file" name="Imagepath" onChange={handleChange} accept="image/*" required />
+        <select name="Category" value={product.Category} onChange={handleChange} style={{ textAlign: "center", fontSize: "20px", borderRadius: "25px" }} required>
+          <option value="">Select Category</option>
+          <option value="Solar">Solar</option>
+          <option value="Fire Detection and Protection">Fire Detection and Protection</option>
+          <option value="Controls">Controls</option>
+        </select>
+        <button onClick={handleClick}>Update</button>
+        {error && <p style={{ color: "red" }}>All fields are required!</p>}
+      </div>
+    </div>
   );
 };
 

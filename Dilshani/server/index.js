@@ -631,6 +631,7 @@ app.post('/logout', (req, res) => {
 // Dhananjayas 
 
 
+
 app.get("/products", (req, res) => {
   const q = "SELECT * FROM `products`";
   db3.query(q, (err, data) => {
@@ -641,6 +642,8 @@ app.get("/products", (req, res) => {
     return res.json(data);
   });
 });
+
+
 
 // Use upload.single('Imagepath') middleware to handle single file upload
 app.post("/products", upload2.single('Imagepath'), (req, res) => {
@@ -664,21 +667,41 @@ app.post("/products", upload2.single('Imagepath'), (req, res) => {
 });
 
 
-app.put("/Products/:ProductID", (req, res) => {
+app.put("/Products/:ProductID", upload2.single('Imagepath'), (req, res) => {
+  console.log("Request file:", req.file); 
+  console.log("Request body:", req.body); 
+
   const ProductID = req.params.ProductID;
-  const q = "UPDATE products SET `ProductName`= ?, `description`= ?, `Category`= ?, `Imagepath`= ?, `Price`= ? WHERE ProductID = ?";
+  const { ProductName, description, Category, Price } = req.body;
 
-  const values = [
-    req.body.ProductName,
-    req.body.description,
-    req.body.Category,
-    req.body.Imagepath,
-    req.body.Price,
-  ];
+  let query = "UPDATE products SET ProductName = ?, description = ?, Category = ?, Price = ? WHERE ProductID = ?";
+  const values = [ProductName, description, Category, Price];
 
-  db3.query(q, [...values, ProductID], (err, data) => {
-    if (err) return res.send(err);
+  // Check if a new file is provided and update the query and values array accordingly
+  if (req.file) {
+    console.log("Got here")
+    const Imagepath = req.file ? req.file.path.replace('public\\uploads\\', 'uploads\\') : null; // Get the relative file path
+    query = "UPDATE products SET ProductName = ?, description = ?, Category = ?, Price = ?, Imagepath = ? WHERE ProductID = ?";
+    values.push(Imagepath); // Add the image path to the values array
+  }
+
+  db3.query(query, [...values, ProductID], (err, data) => {
+    if (err) {
+      console.error("Database error: ", err);
+      return res.status(500).send(err);
+    }
     return res.json(data);
+  });
+});
+
+
+app.get("/Products/:ProductID", (req, res) => {
+  const ProductID = req.params.ProductID;
+  const q = "SELECT * FROM Products WHERE ProductID = ?";
+  db3.query(q, [ProductID], (err, data) => {
+      if (err) return res.status(500).json({ error: "Internal server error" });
+      if (!data.length) return res.status(404).json({ error: "Project not found" });
+      return res.json(data[0]); // Assuming only one project is returned
   });
 });
 
@@ -720,6 +743,11 @@ app.put("/users/:userId/verification", (req, res) => {
     return res.json({ success: true, message: "User verification status updated successfully" });
   });
 });
+
+
+
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
