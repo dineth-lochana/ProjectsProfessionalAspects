@@ -46,6 +46,21 @@ const Product = () => {
       console.log(err);
     }
   };
+  const handlePrint = async () => {
+    const navbar = document.querySelector(".nisansa_nav");
+    const footer = document.querySelector(".footer");
+    const buttons = document.querySelectorAll(".view,.add,.update,.delete");
+
+    navbar.style.display = "none";
+    footer.style.display = "none";
+    buttons.forEach(button => button.style.display = "none");
+
+    window.print();
+
+    navbar.style.display = "block";
+    footer.style.display = "block";
+    buttons.forEach(button => button.style.display = "flex");
+};
   
   const commonStyle = {
     color: 'rgb(2, 2, 2)',
@@ -53,8 +68,10 @@ const Product = () => {
   };
 
   return (
+    <div id="printportfolio">
     <div style={{ paddingBottom: '400px', paddingTop: '150px', padding: '50px' }}>
     <h1>Products</h1>
+    <button className="add" onClick={handlePrint} >Print Portfolio</button>
     <div>
       {Product.map((Product) => (
         <div key={Product.ProductID} style={{ border: '2px solid #D5D5D5 ',borderRadius: '10px', margin: '20px auto', padding: '20px', display: 'flex', justifyContent: 'space-between' }}>
@@ -90,11 +107,8 @@ const Product = () => {
       ))}
     </div>
   
-    <button className="addHome" style={{ position: 'fixed', top: '10px', right: '10px', width: "150px" }}>
-      <Link to="/AddProduct" style={{ color: "inherit", textDecoration: "none" }}>
-        Add new Product
-      </Link>
-    </button>
+
+  </div>
   </div>
   
 )

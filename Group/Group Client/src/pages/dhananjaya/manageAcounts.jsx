@@ -56,8 +56,8 @@ const ManageAcounts = () => {
                     value={user.verified} 
                     onChange={(e) => handleVerificationChange(user.id, e.target.value)}
                   >
-                    <option value="false">False</option>
-                    <option value="true">True</option>
+                    <option value="False">False</option>
+                    <option value="True">True</option>
                   </select>
                 </td>
               </tr>

@@ -65,7 +65,7 @@ function Nav(props) {
               <Link className="nav-link" to="/projects">Projects</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/Educated">Forum</Link>
+              <Link className="nav-link" to="/Educated">Learn</Link>
             </li>            
             <li className="nav-item">
               <Link className="nav-link" to="/profile">Profile</Link>

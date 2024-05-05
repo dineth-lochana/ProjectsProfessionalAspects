@@ -14,13 +14,14 @@ const ImageSlider = () => {
     autoplaySpeed: 2000,
     centerMode: true, // Center the slides
     centerPadding: "0", // Remove padding for center mode
+    
   };
 
   return (
     <div style={{ width: "auto" }}>
       <div className="slider-container">
         <Slider {...settings}>
-          <div className="slider-item">
+          <div className="slider-item ">
             <img src="./images/home_1.png" alt="Image 1" />
             <div className="overlay-text">Solar solutions</div>
           </div>

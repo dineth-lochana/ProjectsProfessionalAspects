@@ -41,9 +41,12 @@ const LatestNews = () => {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center", paddingTop: "100px", fontSize: "50px" }}>
+      {/*<h1 style={{ textAlign: "center", paddingTop: "100px", fontSize: "30px" }}>
         Latest News
-      </h1>
+  </h1>*/}
+      <p style={{ textAlign: "center", paddingTop: "100px", fontSize: "50px" }}>
+      Latest News
+      </p>
       <div style={{ textAlign: "center" }}>
       
           <br/>
@@ -71,11 +74,15 @@ const LatestNews = () => {
       </div>
       <div>
         {latestNews.map((newsItem) => (
+          <div className="card h-100 fs-5  p-3 mb-2 bg-success bg-gradient text-white">
+          <div className="card-body">
           <div key={newsItem.newsid}>
-            <h2>{newsItem.newstitle}</h2>
+            <h3>{newsItem.newstitle}</h3>
             <p>{newsItem.newstext}</p>
             <p>Published Date: {formatDate(newsItem.newsdate)}</p>
-            <hr />
+            <hr style={{ borderTop: '3px solid #001f08' }} />
+          </div>
+          </div>
           </div>
         ))}
       </div>
