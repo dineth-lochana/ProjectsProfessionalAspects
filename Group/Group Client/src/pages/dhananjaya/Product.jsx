@@ -71,12 +71,12 @@ const Product = () => {
     <div id="printportfolio">
     <div style={{ paddingBottom: '400px', paddingTop: '150px', padding: '50px' }}>
     <h1>Products</h1>
-    <button className="add" onClick={handlePrint} >Print Portfolio</button>
+    <button className="add " onClick={handlePrint} >Print Portfolio</button>
     <div>
       {Product.map((Product) => (
-        <div key={Product.ProductID} style={{ border: '2px solid #D5D5D5 ',borderRadius: '10px', margin: '20px auto', padding: '20px', display: 'flex', justifyContent: 'space-between' }}>
+        <div key={Product.ProductID} style={{ border: '2px solid #D5D5D5 ',borderRadius: '10px', margin: '20px auto', padding: '20px', display: 'flex', justifyContent: 'space-between',backgroundColor:"#ededed" }}>
           <div className="left">
-          {Product.Imagepath && <img src={`http://localhost:8800/${Product.Imagepath}`} alt="Product" style={{ width: '400px' }} />}
+          {Product.Imagepath && <img src={`http://localhost:8800/${Product.Imagepath}`} alt="Product" style={{ width: '300px' }} />}
           </div>
   
           <div className="right">
