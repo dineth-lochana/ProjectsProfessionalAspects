@@ -106,7 +106,7 @@ const UpdateProjects = () => {
             {error && <div className="error">{error}</div>}
 
             <input type="text" placeholder="Title" name="title" value={project.title} onChange={handleChange} />
-            <input type="text" placeholder="Info" name="info" value={project.info} onChange={handleChange} />
+            <textarea type="text" placeholder="Info" name="info" value={project.info} onChange={handleChange} />
             <input type="text" placeholder="Client" name="client" value={project.client} onChange={handleChange} />
             <p>Cover</p>
             <input type="file" name="cover" accept=".png, .jpg" onChange={(e) => handleFileChange(e, "cover")} />

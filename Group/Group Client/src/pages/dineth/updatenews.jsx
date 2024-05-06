@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-
+import swal from 'sweetalert';
 import "./dineth.css";
 
 const UpdateNews = () => {
@@ -34,17 +34,22 @@ const UpdateNews = () => {
   const handleClick = async (e) => {
     e.preventDefault();
 
+    if (!news.newstitle || !news.newstext) {
+      swal("Oops...", "Both News Title and News Text are required!", "error");
+      return;
+    }
+
     try {
-      console.log("Putting new with "+newsid);
+      console.log("Putting new with " + newsid);
       await axios.put(`http://localhost:8800/news/${newsid}`, news);
-      navigate("/");
+      navigate("/ManageNews");
     } catch (err) {
       console.log(err);
     }
   };
 
   const handleCancel = () => {
-    navigate("/");
+    navigate("/ManageNews");
   };
 
   console.log(news);

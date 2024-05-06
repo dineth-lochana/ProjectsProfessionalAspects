@@ -85,7 +85,7 @@ const AddProjects = () => {
 
             <p>Details</p>
             <input type="text" placeholder="Title" name="title" onChange={handleChange} />
-            <input type="text" placeholder="Info" name="info" onChange={handleChange} />
+            <textarea type="Info" placeholder="Info" name="info" onChange={handleChange} />
             <input type="text" placeholder="Client" name="client" onChange={handleChange} />
             <p>Cover</p>
             <input type="file" name="cover" accept=".png, .jpg" onChange={(e) => handleFileChange(e, "cover")} />
