@@ -8,8 +8,8 @@ function Footer() {
   return (
 
     <div>
-      <footer className="footer">
-        <div className="footer-content">
+      <footer className="footer success bg-success">
+        <div className="footer-content ">
           <div className="about-section">
             <div>
               <h3>About</h3>

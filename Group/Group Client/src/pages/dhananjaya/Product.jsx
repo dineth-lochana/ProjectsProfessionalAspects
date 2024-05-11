@@ -72,14 +72,16 @@ const Product = () => {
     <div style={{ paddingBottom: '400px', paddingTop: '150px', padding: '50px' }}>
     <h1>Products</h1>
     <button className="add " onClick={handlePrint} >Print Portfolio</button>
-    <div>
+    <div className="container" style={{ maxWidth: '1300px', margin: '0 auto' }}>
+    <div className="row">
       {Product.map((Product) => (
-        <div key={Product.ProductID} style={{ border: '2px solid #D5D5D5 ',borderRadius: '10px', margin: '20px auto', padding: '20px', display: 'flex', justifyContent: 'space-between',backgroundColor:"#ededed" }}>
-          <div className="left">
-          {Product.Imagepath && <img src={`http://localhost:8800/${Product.Imagepath}`} alt="Product" style={{ width: '300px' }} />}
-          </div>
+        <div key={Product.ProductID} className="col-lg-12" style={{ border: '2px solid #D5D5D5', borderRadius: '10px', margin: '20px 0', padding: '20px', backgroundColor: "#ededed" }}>
+        <div className="row">
+        <div className="col-md-6">
+              {Product.Imagepath && <img src={`http://localhost:8800/${Product.Imagepath}`} alt="Product" style={{ width: '60%', marginLeft: '50px' }} />}
+            </div>
   
-          <div className="right">
+          <div className="col-md-6">
             <div style={{ fontSize: '28px' }}>{Product.ProductName}</div>
             <br/>
             <div style={{ fontSize: '25px' }}>
@@ -103,13 +105,14 @@ const Product = () => {
               </Link>
             </button>
           </div>
-        </div>
+            </div>
+          </div>
+       
       ))}
     </div>
-  
-
   </div>
-  </div>
+</div>
+</div>
   
 )
   

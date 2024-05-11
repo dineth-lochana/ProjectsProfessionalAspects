@@ -45,6 +45,7 @@ import FireProducts from './pages/dhananjaya/FireProducts';
 import SolarProducts from './pages/dhananjaya/SolarProducts';
 import ControlsProducts from './pages/dhananjaya/ControlsProducts';
 import Educated from './pages/dhananjaya/Educated';
+import QuestionManage from './pages/dhananjaya/QuestionManage';
 import "./Style.css";
 
 
@@ -124,6 +125,7 @@ function App() {
         <Route path="/ControlsProducts" element={<ControlsProducts />} />
         <Route path="/manageAcounts" element={<ManageAcounts />} />
         <Route path="/Educated" element={<Educated />} />
+        <Route path="/QuestionManage" element={<QuestionManage />} />
 
 
         <Route path="*" element={<NotFound />} />

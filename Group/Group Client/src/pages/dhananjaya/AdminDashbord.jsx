@@ -55,12 +55,23 @@ const AdminDashboard = () => {
               </div>
             </div>
           </Link>
+          <Link to="/QuestionManage">
+            <div className="mproduct">
+              <div className="image">
+                <img src="./images/Blue_question_mark_icon.svg.png" alt="Quotation" style={{ width: "340px", paddingTop: "10px", paddingLeft: "10px" }} />
+              </div>
+              <div className="name">
+                <br />
+                <h3>Question Management</h3>
+              </div>
+            </div>
+          </Link>
 
           {/* New tile to open ManageNews route */}
           <Link to="/ManageNews">
             <div className="mproduct">
               <div className="image">
-                <img src="./images/add.png" alt="Manage News" style={{ width: "350px", paddingTop: "10px", paddingLeft: "10px" }} />
+                <img src="./images/news-94.png" alt="Manage News" style={{ width: "345px", paddingTop: "10px", paddingLeft: "10px" }} />
               </div>
               <div className="name">
                 <br />
@@ -73,7 +84,7 @@ const AdminDashboard = () => {
           <Link to="/ManageNewsLetter">
             <div className="mproduct">
               <div className="image">
-                <img src="./images/add.png" alt="Manage News" style={{ width: "350px", paddingTop: "10px", paddingLeft: "10px" }} />
+                <img src="./images/[removal.ai]_05e853ea-6bf7-43cc-bcd6-8e84abc6ca0e-360_f_80410550_acki20ri6u9uvwywobnd7qwu2osfybqz.png" alt="Manage News" style={{ width: "350px", paddingTop: "10px", paddingLeft: "10px" }} />
               </div>
               <div className="name">
                 <br />

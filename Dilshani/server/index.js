@@ -748,10 +748,10 @@ app.get("/products", (req, res) => {
 
 
 
-// Use upload.single('Imagepath') middleware to handle single file upload
+// Use upload.single('Imagepath')  file upload
 app.post("/products", upload2.single('Imagepath'), (req, res) => {
   const { ProductName, description, Category, Price } = req.body;
-  const Imagepath = req.file ? req.file.path.replace('public\\uploads\\', 'uploads\\') : null; // Get the relative file path
+  const Imagepath = req.file ? req.file.path.replace('public\\uploads\\', 'uploads\\') : null; // Get file path
 
   const q = "INSERT INTO products(`ProductName`, `description`, `Category`, `Imagepath`, `Price`) VALUES (?, ?, ?, ?, ?)";
 
@@ -780,12 +780,12 @@ app.put("/Products/:ProductID", upload2.single('Imagepath'), (req, res) => {
   let query = "UPDATE products SET ProductName = ?, description = ?, Category = ?, Price = ? WHERE ProductID = ?";
   const values = [ProductName, description, Category, Price];
 
-  // Check if a new file is provided and update the query and values array accordingly
+  // Check if a new file is provided 
   if (req.file) {
     console.log("Got here")
-    const Imagepath = req.file ? req.file.path.replace('public\\uploads\\', 'uploads\\') : null; // Get the relative file path
+    const Imagepath = req.file ? req.file.path.replace('public\\uploads\\', 'uploads\\') : null; // Get  file path
     query = "UPDATE products SET ProductName = ?, description = ?, Category = ?, Price = ?, Imagepath = ? WHERE ProductID = ?";
-    values.push(Imagepath); // Add the image path to the values array
+    values.push(Imagepath); // Add the image path 
   }
 
   db3.query(query, [...values, ProductID], (err, data) => {
@@ -804,7 +804,7 @@ app.get("/Products/:ProductID", (req, res) => {
   db3.query(q, [ProductID], (err, data) => {
       if (err) return res.status(500).json({ error: "Internal server error" });
       if (!data.length) return res.status(404).json({ error: "Project not found" });
-      return res.json(data[0]); // Assuming only one project is returned
+      return res.json(data[0]); 
   });
 });
 
@@ -844,6 +844,54 @@ app.put("/users/:userId/verification", (req, res) => {
       return res.status(500).json({ error: "Failed to update user verification status" });
     }
     return res.json({ success: true, message: "User verification status updated successfully" });
+  });
+});
+
+app.get("/questions", (req, res) => {
+  const q = "SELECT * FROM `questions`";
+  db3.query(q, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.json(err);
+    }
+    return res.json(data);
+  });
+});
+
+app.post("/questions", (req, res) => {
+  const newData = req.body.Data;
+  const q = "INSERT INTO `questions` (Data) VALUES (?)";
+  db3.query(q, newData, (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.json(err);
+    }
+    return res.json({ message: "Question added successfully" });
+  });
+});
+
+
+app.delete("/questions/:id", (req, res) => {
+  const id = req.params.id;
+  const q = "DELETE FROM `questions` WHERE id = ?";
+  db3.query(q, id, (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.json(err);
+    }
+    return res.json({ message: "Question deleted successfully" });
+  });
+});
+app.put("/questions/:id", (req, res) => {
+  const id = req.params.id;
+  const newData = req.body.Data; 
+  const q = "UPDATE `questions` SET Data = ? WHERE id = ?";
+  db3.query(q, [newData, id], (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.json(err);
+    }
+    return res.json({ message: "Question updated successfully" });
   });
 });
 

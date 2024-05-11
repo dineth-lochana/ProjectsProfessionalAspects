@@ -1,11 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from "axios";
 
 const Educated = () => {
+ 
+
   const [disaster, setDisaster] = useState("");
   const [questionType, setQuestionType] = useState("");
   const [answer, setAnswer] = useState("");
   const [generatingAnswer, setGeneratingAnswer] = useState(false);
+  const [users, setUsers] = useState([]);
+
+  
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get('http://localhost:8800/questions'); 
+      setUsers(response.data);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
 
   async function generateAnswer(e) {
     e.preventDefault();
@@ -26,13 +43,14 @@ const Educated = () => {
         },
       });
 
+   
       const answerData = response?.data?.candidates[0]?.content?.parts[0]?.text;
       if (!answerData) {
         setAnswer("No answer found for this specific question.");
         return;
       }
 
-      // Process the answer for better readability
+      // Process the answer
       const formattedAnswer = formatAnswer(answerData);
       setAnswer(formattedAnswer);
     } catch (error) {
@@ -57,7 +75,7 @@ const Educated = () => {
 
   return (
     <div className="container-fluid bg-light min-vh-100">
-      <br/><br/>
+    
       <div className="row justify-content-center align-items-center min-vh-100">
         <div className="col-md-9">
           <div className="card">
@@ -88,11 +106,9 @@ const Educated = () => {
                     onChange={(e) => setQuestionType(e.target.value)}
                   >
                     <option value="">Choose...</option>
-                    <option value="Compatibility and Integration">Compatibility and Integration {disaster}</option>
-                    <option value="Scalability">Scalability {disaster}</option>
-                    <option value="Reliability and Performance">Reliability and Performance of  {disaster}</option>
-                    <option value="Ease of Use and Maintenance">how to Ease of Use and Maintenance from {disaster}</option>
-                    <option value="Compliance and Regulations">how to Compliance and Regulations {disaster}</option>
+                   
+                    
+                    {users.map(option => (<option key={option.id} value={option.Data}>{option.Data}{disaster}</option>))}
                   </select>
                 </div>
                 <button

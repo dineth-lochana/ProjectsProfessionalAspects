@@ -87,7 +87,7 @@ const AddProduct = () => {
           <option value="Controls">Controls</option>
         </select>
         <button onClick={handleClick}>Add</button>
-        {error && <p style={{ color: "red" }}>All fields are required!</p>}
+        {error && <p style={{ color: "red", fontSize: "20px"}}>All fields are required!</p>}
       </div>
     </div>
   )

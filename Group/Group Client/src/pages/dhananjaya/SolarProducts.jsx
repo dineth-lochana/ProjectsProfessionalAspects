@@ -34,40 +34,38 @@ const SolarProducts = () => {
   };
 
   return (
-    <div style={{ paddingBottom: '400px', paddingTop: '150px', padding: '50px' }}>
-    <h1>Products</h1>
-    <div>
+    <div > 
+  <br/><br/>
+  <h1 style={{ textAlign: 'center' }}>Solar Products</h1>
+  <div className="container" style={{ maxWidth: '1300px', margin: '0 auto' }}>
+    <div className="row">
       {Product.filter((product) => product.Category === 'Solar').map((Product) => (
-        <div key={Product.ProductID} style={{ border: '2px solid #D5D5D5 ',borderRadius: '10px', margin: '20px auto', padding: '20px', display: 'flex', justifyContent: 'space-between' }}>
-          <div className="left">
-          {Product.Imagepath && <img src={`http://localhost:8800/${Product.Imagepath}`} alt="Product" style={{ width: '300px' }} />}
-          </div>
-  
-          <div className="right">
-            <div style={{ fontSize: '28px' }}>{Product.ProductName}</div>
-            <br/>
-            <div style={{ fontSize: '25px' }}>
-              <b>Category:</b> {Product.Category}
+        <div key={Product.ProductID} className="col-lg-12" style={{ border: '2px solid #D5D5D5', borderRadius: '10px', margin: '20px 0', padding: '20px', backgroundColor: "#ededed" }}>
+          <div className="row">
+            <div className="col-md-6">
+              {Product.Imagepath && <img src={`http://localhost:8800/${Product.Imagepath}`} alt="Product" style={{ width: '60%', marginLeft: '50px' }} />}
             </div>
-            
-            <div style={{ fontSize: '20px' }}>
-              <b>Description:</b> {Product.description}
-          </div>
-          
-          <br/>
-
-          <div style={{ fontSize: '25px' }}>
-            <b>Price:</b> RS.{Product.Price}.00
-          </div>
-
-            
+            <div className="col-md-6">
+              <div style={{ fontSize: '28px' }}>{Product.ProductName}</div>
+              <br />
+              <div style={{ fontSize: '25px' }}>
+                <b>Category:</b> {Product.Category}
+              </div>
+              <div style={{ fontSize: '20px' }}>
+                <b>Description:</b> {Product.description}
+              </div>
+              <br />
+              <div style={{ fontSize: '25px' }}>
+                <b>Price:</b> RS.{Product.Price}.00
+              </div>
+            </div>
           </div>
         </div>
       ))}
     </div>
-  
-
   </div>
+</div>
+
   
 )
   

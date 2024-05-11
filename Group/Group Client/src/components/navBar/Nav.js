@@ -1,4 +1,5 @@
-import React from 'react';
+import React , { useEffect, useState, useRef } from 'react';
+
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logoImg from './images/logo 2024.png';
@@ -8,6 +9,51 @@ import swal from 'sweetalert';
 
 function Nav(props) {
   const navigate = useNavigate();
+
+  // Function to fetch user type and verified status from local storage
+  async function fetchUserTypeAndVerifiedFromLocalStorage() {
+      try {
+          const userEmail = localStorage.getItem('useremail');
+          if (!userEmail) {
+              // Return default values if user email is not found
+              return { userType: null, verified: null };
+          }
+          const response = await axios.get(`http://localhost:8800/profile/${encodeURIComponent(userEmail)}`);
+          console.log("User type is " + response.data.type);
+          console.log("User verified status is " + response.data.verified);
+          return {
+              userType: response.data.type,
+              verified: response.data.verified
+          };
+      } catch (error) {
+          console.error('Error fetching user type and verified status:', error);
+          throw error;
+      }
+  }
+
+  const [userType, setUserType] = useState(null);
+  const [verified, setVerified] = useState(null);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const { userType, verified } = await fetchUserTypeAndVerifiedFromLocalStorage();
+            setUserType(userType);
+            setVerified(verified);
+        
+
+          
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            setError("An error occurred while fetching data.");
+        }
+    };
+
+    fetchData();
+}, []);
+
+  
 
   const handleLogout = async () => {
     swal({
@@ -34,6 +80,7 @@ function Nav(props) {
 
   return (
     <div className="nisansa_nav">
+       
     <nav className="navbar navbar-expand-lg navbar-light p-3 navdesign">
       <div className="container-fluid d-flex justify-content-between align-items-center">
         <Link className="navbar-brand" to="/">
@@ -49,7 +96,7 @@ function Nav(props) {
               <Link className="nav-link" to="/" aria-current="page">Home</Link>
             </li>
             <li className="nav-item dropdown">
-      <Link className="nav-link" to="/products">
+      <Link className="nav-link" >
         Products
       </Link>
       <div className="dropdown-content">
@@ -72,9 +119,14 @@ function Nav(props) {
             </li>
            
             <li className="nav-item">
+            {(userType === 1 && verified === "True") && (
+                            <>
               <Link className="nav-link" to="/AdminDashbord">Dashboard</Link>
-            </li>            
+              </>
+                        )}  
 
+            </li>
+            
             <li className="nav-item">
               {props.useremail ? (
                 <Link className="nav-link" to="/" onClick={handleLogout}>Logout</Link>
@@ -86,6 +138,7 @@ function Nav(props) {
         </div>
       </div>
     </nav>
+    
     </div>
     
   );
