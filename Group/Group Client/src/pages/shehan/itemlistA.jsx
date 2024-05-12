@@ -73,12 +73,26 @@ const ItemList = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const handlePrint = (item) => {
-    const printedDetails = `Full Name: ${item.Full_Name}\nSubject: ${item.Subject}\nCompany Name: ${item.Company_Name}\nEmail Address: ${item.Email_Address}\nContact Number: ${item.Contact_Number}\nDetails: ${item.Details}`;
-    const blob = new Blob([printedDetails], { type: 'text/plain;charset=utf-8' });
-    saveAs(blob, 'requestData.txt');
-  };
+const handlePrint = (item) => {
+  // Construct the printed details
+  const printedDetails = `Full Name: ${item.Full_Name}\nSubject: ${item.Subject}\nCompany Name: ${item.Company_Name}\nEmail Address: ${item.Email_Address}\nContact Number: ${item.Contact_Number}\nDetails: ${item.Details}`;
 
+  // Create a new window and set its content to the PDF
+  const printWindow = window.open('', '_blank');
+  printWindow.document.open();
+  printWindow.document.write(`
+    <html>
+      <head>
+        <title>Request Details</title>
+      </head>
+      <body>
+        <pre>${printedDetails}</pre>
+        <script>window.print();</script>
+      </body>
+    </html>
+  `);
+  printWindow.document.close();
+};
 
 
   
