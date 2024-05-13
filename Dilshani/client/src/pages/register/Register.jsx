@@ -43,6 +43,7 @@ const Register = () => {
         </div>
         <div className="right">
           <h1>Register</h1>
+          {err && <p>Error: {err.message}</p>}
           <form>
             <input
               type="text"

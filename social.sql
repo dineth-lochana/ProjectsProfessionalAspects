@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2024 at 01:46 PM
+-- Generation Time: May 13, 2024 at 03:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -101,7 +101,13 @@ INSERT INTO `posts` (`id`, `descr`, `img`, `userId`, `createdAt`) VALUES
 (10, 'TEEEEEST', '1714302541851cover-1708766970000.jpg', 11, '2024-04-28 16:39:01'),
 (11, 'Teeest 2 ', '1714302554017cover-1708767488557.jpg', 11, '2024-04-28 16:39:14'),
 (12, 'Test 33333333', '', 11, '2024-04-28 17:02:31'),
-(13, 'teest 33333333333333333333333333333', '17143039760401712202490619Modern Colorful Collaboration Strategy Diagram Brainstorm.png', 11, '2024-04-28 17:02:56');
+(13, 'teest 33333333333333333333333333333', '17143039760401712202490619Modern Colorful Collaboration Strategy Diagram Brainstorm.png', 11, '2024-04-28 17:02:56'),
+(14, 'Test', '', 8, '2024-05-13 18:23:47'),
+(15, 'Test', '1715604840173cover-1708754937585.jpg', 8, '2024-05-13 18:24:00'),
+(16, 'Test 2', '', 8, '2024-05-13 18:28:03'),
+(17, '', '', 8, '2024-05-13 18:28:03'),
+(18, 'Test 3', '', 8, '2024-05-13 18:28:39'),
+(19, 'Test123', '', 17, '2024-05-13 18:32:35');
 
 -- --------------------------------------------------------
 
@@ -130,7 +136,9 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `name`) VALUES
 (8, 'dinethlm', 'test@test.com', '$2a$10$Z9RVd1rg0WwZv.XDyNeRH.LITDxcxGIysE2dLyQEI4uAx2wwlJteW', 'test123'),
 (9, 'testing', 'test2@test.com', '$2a$10$upX/G.7vvkv0QsGVqzMSdeXmsWdiOFZwkcGhpo0STHYCzvnFe2dnq', 'test2'),
 (10, 'abc', 'abc@abc.com', '$2a$10$dhr5qu/T4jtouNF.ENfBGegcqEjMTkG9SUFLPJsf8KzuhpbqB6s0i', 'abc'),
-(11, 'test', 'test@test,com', '$2a$10$bf6lvxN8rerGMX00VY6JkeUjHRBzKMZk9UAfCPcusNQrvf4yfx48m', 'test');
+(11, 'test', 'test@test,com', '$2a$10$bf6lvxN8rerGMX00VY6JkeUjHRBzKMZk9UAfCPcusNQrvf4yfx48m', 'test'),
+(16, 'test7', 'test@test', '$2a$10$twf9QYholjGhlihfLehJR.Ya8N.Mf8yD01SAzWMfxKaQL19SwSohS', 'test7'),
+(17, 'test8', 'test8', '$2a$10$LatuVsChijm7eEhcor9Pmes0/2qzvgt8x4wdkqTB61afimzYsmy8O', 'test8');
 
 --
 -- Indexes for dumped tables
@@ -172,13 +180,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables

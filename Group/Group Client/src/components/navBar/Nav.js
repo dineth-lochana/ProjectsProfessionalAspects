@@ -69,7 +69,13 @@ function Nav(props) {
           props.setUseremail('');
           localStorage.removeItem('useremail'); // Clear local storage
           navigate('/login');
-          swal("Logged Out!", "You have been successfully logged out.", "success");
+       
+          setUserType(null);
+          setVerified(null);
+
+          swal("Success!", "You're logged out !", "success");
+       
+
         } catch (error) {
           console.error('Logout failed:', error);
           swal("Error!", "Logout failed. Please try again.", "error");
@@ -126,7 +132,15 @@ function Nav(props) {
                         )}  
 
             </li>
-            
+  
+
+            <li className="nav-item">
+
+                <Link className="nav-link" to="http://localhost:3001/">Forum</Link>
+           
+            </li>
+
+
             <li className="nav-item">
               {props.useremail ? (
                 <Link className="nav-link" to="/" onClick={handleLogout}>Logout</Link>

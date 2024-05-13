@@ -16,7 +16,8 @@ function LoginForm(props) {
       console.log(response.data);
       props.setUseremail(response.data.email);
       swal("Success!", "You're logged in!", "success")
-        .then(() => navigate('/'));
+      navigate('/'); 
+
     } catch (error) {
       console.error('Login failed:', error.response?.data || error.message);
       swal("Failed!", "Login failed. Please check your credentials and try again.", "error");

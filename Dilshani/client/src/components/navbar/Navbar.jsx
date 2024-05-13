@@ -34,7 +34,7 @@ const Navbar = () => {
         
       </div>
       <div className="right">
-      {darkMode ? (
+        {darkMode ? (
           <WbSunnyOutlinedIcon onClick={toggle} />
         ) : (
           <DarkModeOutlinedIcon onClick={toggle} />
@@ -42,12 +42,14 @@ const Navbar = () => {
         <EmailOutlinedIcon />
         <NotificationsOutlinedIcon />
         <PersonOutlinedIcon />
-        {/* Logout button */}
         <button onClick={handleLogout}>Logout</button>
+
+        <Link to="http://localhost:3000" style={{ textDecoration: "none" }}>
+          <button>Go to Main Website</button>
+        </Link>
       </div>
     </div>
   );
 };
 
 export default Navbar;
-
