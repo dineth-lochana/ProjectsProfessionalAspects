@@ -37,20 +37,25 @@ export const addComment = (req, res) => {
 };
 
 export const deleteComment = (req, res) => {
-  const token = req.cookies.access_token;
-  if (!token) return res.status(401).json("Not authenticated!");
+  const token = req.cookies.accessToken; // Corrected token key to accessToken
+  if (!token) return res.status(401).json({ error: "Not authenticated!" });
 
-  jwt.verify(token, "jwtkey", (err, userInfo) => {
-    if (err) return res.status(403).json("Token is not valid!");
+  jwt.verify(token, "secretkey", (err, userInfo) => { // Adjusted secret key
+    if (err) return res.status(403).json({ error: "Token is not valid!" });
 
     const commentId = req.params.id;
-    const q = "DELETE FROM `comments` WHERE `id`=? AND`userId`=?";
-    
+    const userId = userInfo.id;
 
-    db.query(q, [commentId, userInfo.id], (err, data) => {
-      if (err) return res.status(500).json(err);
-      if (data.affectedRows > 0) return res.json("Comment has been deleted!");
-      return res.status(403).json("You can delete only your comment!");
+    const q = "DELETE FROM `comments` WHERE `id`=? AND `userId`=?";
+
+    db.query(q, [commentId, userId], (err, data) => {
+      if (err) return res.status(500).json({ error: "Internal server error!" });
+
+      if (data.affectedRows > 0) {
+        return res.json({ message: "Comment has been deleted!" });
+      } else {
+        return res.status(403).json({ error: "You can delete only your comment!" });
+      }
     });
   });
 };
